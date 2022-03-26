@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pw.client.StartController">
+    <children>
+        <StackPane prefHeight="560.0" prefWidth="330.0" style="-fx-background-color: red;">
+            <children>
+                <Pane fx:id="pnSignIn" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #276d07;">
+                    <children>
+                        <TextField fx:id="userName" layoutX="69.0" layoutY="250.0" prefHeight="34.0" prefWidth="208.0" promptText="Username" style="-fx-background-color: #f1f0ef;" text="Username">
+                            <font>
+                                <Font name="Arial" size="17.0" />
+                            </font>
+                        </TextField>
+                        <Button layoutX="69.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleJoin" prefHeight="76.0" prefWidth="208.0" style="-fx-background-color: #ffffff;" styleClass="btnLogin" text="Join the chat" textFill="#007408">
+                            <font>
+                                <Font name="Arial" size="29.0" />
+                            </font>
+                        </Button>
+                        <Ellipse fill="WHITE" layoutX="162.0" layoutY="130.0" radiusX="100.0" radiusY="80.0" stroke="#0a6200" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Polygon fill="WHITE" layoutX="107.0" layoutY="181.0" points="-50.0, 40.0, 26.33331298828125, 16.666656494140625, -18.33331298828125, -16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="58.0" prefHeight="141.0" prefWidth="200.0" text="Textr!" textAlignment="CENTER" textFill="#007408" textOverrun="CLIP" wrapText="true">
+                            <font>
+                                <Font name="Arial" size="70.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>
