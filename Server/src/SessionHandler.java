@@ -30,38 +30,66 @@ public class SessionHandler extends Thread {
 
     @Override
     public void run() {
-        try {
-            String msg;
-            while ((msg = reader1.readLine()) != null) {
-                if (msg.equalsIgnoreCase( "exit"))
-                    break;
-
-                writer2.println(msg);
-            }
-
-            while ((msg = reader2.readLine()) != null) {
-                if (msg.equalsIgnoreCase( "exit"))
-                    break;
-
-                writer1.println(msg);
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        Runnable r = () -> {
             try {
-                reader1.close();
-                reader2.close();
+                String msg1;
 
-                writer1.close();
-                writer2.close();
+                while ((msg1 = reader1.readLine()) != null) {
 
-                player1.close();
-                player2.close();
-            } catch (IOException e) {
+                    System.out.println(msg1);
+                    writer1.println(msg1);
+                    writer2.println(msg1);
+
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    reader1.close();
+
+                    writer1.close();
+                    writer2.close();
+
+                    player1.close();
+                    player2.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        };
+
+        Runnable r2 = () -> {
+            try {
+                String msg2;
+                while ((msg2 = reader2.readLine()) != null) {
+
+                    System.out.println(msg2);
+                    writer1.println(msg2);
+                    writer2.println(msg2);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    reader1.close();
+
+                    writer1.close();
+                    writer2.close();
+
+                    player1.close();
+                    player2.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread t1 = new Thread(r);
+        Thread t2 = new Thread(r2);
+        t1.start();
+        t2.start();
+
     }
+
 }

@@ -32,12 +32,13 @@ public class StartController {
 
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainWindow.fxml"));
             Parent root = fxmlLoader.load();
-            stage.setScene(new Scene(root, 330, 560));
+            stage.setScene(new Scene(root));
             stage.setTitle(username + "");
+            stage.setFullScreen(true);
             stage.setOnCloseRequest(event -> {
                 System.exit(0);
             });
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
