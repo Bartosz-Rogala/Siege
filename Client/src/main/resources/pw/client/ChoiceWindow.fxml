@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="990.0" style="-fx-background-color: #E8E4C9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="58.0" prefHeight="80.0" prefWidth="627.0" text="Choose your army" textAlignment="CENTER" textFill="#56533f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Arial" size="70.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+               <children>
+                  <VBox fx:id="goblinBox" alignment="TOP_CENTER" onMouseClicked="#handleChooseGoblin" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="58.0" prefHeight="80.0" prefWidth="627.0" text="Goblin" textAlignment="CENTER" textFill="#56533f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="40.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../client/goblin.png" />
+                           </image></ImageView>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="humanBox" alignment="TOP_CENTER" onMouseClicked="#handleChooseHuman" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="58.0" prefHeight="80.0" prefWidth="627.0" text="Human" textAlignment="CENTER" textFill="#56533f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="40.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../client/human.png" />
+                           </image></ImageView>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="monsterBox" alignment="TOP_CENTER" onMouseClicked="#handleChooseMonster" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="58.0" prefHeight="80.0" prefWidth="627.0" text="Monster" textAlignment="CENTER" textFill="#56533f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="40.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../client/monster.png" />
+                           </image></ImageView>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

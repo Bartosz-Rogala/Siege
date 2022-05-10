@@ -21,15 +21,29 @@ public class MainController extends Thread implements Initializable {
     BufferedReader reader;
     PrintWriter writer;
     Socket socket;
+    ChoiceController choiceController;
 
     Board board;
     private Hexagon[][] hexagons;
     int maxI = 9;
     int maxJ = 13;
+
+    public MainController(ChoiceController choiceController) {
+        this.choiceController = choiceController;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        connectSocket();
+        try {
+            socket = choiceController.getSocket();
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
+            this.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         hexagons = new Hexagon[maxI][maxJ];
 
@@ -43,18 +57,6 @@ public class MainController extends Thread implements Initializable {
 
         board = new Board(hexagons);
         board.addNeighbours(1);
-    }
-
-    public void connectSocket() {
-        try {
-            socket = new Socket("localhost", 9001);
-            System.out.println("Socket is connected with server");
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            writer = new PrintWriter(socket.getOutputStream(), true);
-            this.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -88,17 +90,6 @@ public class MainController extends Thread implements Initializable {
         }
 
         send();
-    }
-
-    public void handleSendEvent(MouseEvent event) {
-
-//        send();
-    }
-
-    public void sendMessageByKey(KeyEvent event) {
-        if (event.getCode().toString().equals("ENTER")) {
-            send();
-        }
     }
 
     public void send() {

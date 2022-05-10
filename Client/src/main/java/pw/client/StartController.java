@@ -16,25 +16,23 @@ public class StartController {
     @FXML public TextField userName;
 
     public static String username;
-    public static ArrayList<String> users = new ArrayList<>();
 
     public void handleJoin() {
-        System.out.println(userName.getText());
         username = userName.getText();
-        users.add(username);
+
         changeWindow();
     }
 
     public void changeWindow() {
         try {
             Stage stage = (Stage) userName.getScene().getWindow();
-//            Parent root = FXMLLoader.load(this.getClass().getResource("/view/MainWindow.fxml"));
 
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ChoiceWindow.fxml"));
+            ChoiceController choiceController = new ChoiceController(this);
+            fxmlLoader.setController(choiceController);
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));
             stage.setTitle(username + "");
-            stage.setFullScreen(true);
             stage.setOnCloseRequest(event -> {
                 System.exit(0);
             });
@@ -43,5 +41,9 @@ public class StartController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
