@@ -2,11 +2,11 @@ package pw.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -14,21 +14,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class ChoiceController {
 
     public StartController startController;
-    @FXML
-    public VBox goblinBox;
-    public VBox humanBox;
-    public VBox monsterBox;
 
+    @FXML
+    public HBox boxes;
+    VBox chosenVBox;
     Socket socket;
+    String army = "goblin";
 
     public ChoiceController (StartController startController) {
         this.startController = startController;
+
     }
 
     @FXML
@@ -41,38 +40,32 @@ public class ChoiceController {
         }
     }
 
-    public void handleChooseGoblin() {
-        changeWindow("goblin");
-    }
+    @FXML
+    public void handleChoice(MouseEvent event) {
+        chosenVBox = (VBox) event.getSource();
 
-    public void handleChooseHuman() {
-        changeWindow("human");
-    }
-
-    public void handleChooseMonster() {
-        changeWindow("monster");
-    }
-
-    public void changeWindow(String army) {
-        try {
-            Stage stage;
-            switch (army) {
-//                case "goblin":
-//                    stage = (Stage) goblinBox.getScene().getWindow();
-//                    break;
-                case "human":
-                    stage = (Stage) humanBox.getScene().getWindow();
-                    break;
-                case "monster":
-                    stage = (Stage) monsterBox.getScene().getWindow();
-                    break;
-                default:
-                    stage = (Stage) goblinBox.getScene().getWindow();
+        for(int i = 0; i < boxes.getChildren().toArray().length; i++) {
+            VBox vbox = (VBox) boxes.getChildren().toArray()[i];
+            if (chosenVBox.getId().equals(vbox.getId())) {
+                chosenVBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                army = chosenVBox.getId();
+            } else {
+                vbox.setBorder(null);
             }
+        }
 
 
+    }
+
+    public void handlePlay() {
+        changeWindow();
+    }
+
+    public void changeWindow() {
+        try {
+            Stage stage = (Stage) chosenVBox.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainWindow.fxml"));
-            MainController mainController = new MainController(this);
+            MainController mainController = new MainController(this, army);
             fxmlLoader.setController(mainController);
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));

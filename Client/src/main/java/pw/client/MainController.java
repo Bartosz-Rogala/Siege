@@ -24,12 +24,14 @@ public class MainController extends Thread implements Initializable {
     ChoiceController choiceController;
 
     Board board;
+    String army;
     private Hexagon[][] hexagons;
     int maxI = 9;
     int maxJ = 13;
 
-    public MainController(ChoiceController choiceController) {
+    public MainController(ChoiceController choiceController, String army) {
         this.choiceController = choiceController;
+        this.army = army;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class MainController extends Thread implements Initializable {
             socket = choiceController.getSocket();
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
-            this.start();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,6 +59,8 @@ public class MainController extends Thread implements Initializable {
 
         board = new Board(hexagons);
         board.addNeighbours(1);
+        send("first:" + army);
+        this.start();
     }
 
     @Override
@@ -64,10 +68,14 @@ public class MainController extends Thread implements Initializable {
         try {
             while (true) {
                 String msg = reader.readLine();
+                System.out.println("reader: " + msg);
                 String[] tokens = msg.split(":");
-                String username = tokens[0];
-                String[] activeHexes = tokens[1].split(";");
-                board.parseMessage(activeHexes);
+
+
+
+                String[] hexes = tokens[2].split(";");
+                board.parseMessage(hexes);
+
             }
 
         } catch (Exception e) {
@@ -89,14 +97,14 @@ public class MainController extends Thread implements Initializable {
             board.activate((Polygon) event.getSource());
         }
 
-        send();
+        send(StartController.username + ":" + army + ":" + board.getContent());
     }
 
-    public void send() {
+    public void send(String msg) {
 
-        String msg = board.getContent();
-        writer.println(StartController.username + ":" + msg);
-        System.out.println(StartController.username + ":" + msg);
+
+        writer.println(msg);
+        System.out.println(msg);
 
         if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
             System.exit(0);

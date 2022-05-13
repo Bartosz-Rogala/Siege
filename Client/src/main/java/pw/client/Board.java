@@ -1,5 +1,6 @@
 package pw.client;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class Board {
@@ -65,15 +66,23 @@ public class Board {
         return content;
     }
 
-    public void parseMessage(String[] activeHexes) {
+    public void parseMessage(String[] hexes) {
         deactivateAll();
         int k = 0;
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                if (Boolean.valueOf(activeHexes[k]) == true) {
-                    activate(hexagons[i][j].getHex());
+                String[] tokens = hexes[k].split(",");
+                System.out.println("tralalaalal");
+                if (tokens[0].equals("true")) {
+                    System.out.println("asdf");
+                    hexagons[i][j].getHex().setFill(Color.web(tokens[2]));
                 }
                 k++;
+//                if (Boolean.valueOf(activeHexes[k]) == true) {
+//                    activate(hexagons[i][j].getHex());
+//                }
+//                k++;
+
             }
         }
     }
