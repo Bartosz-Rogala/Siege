@@ -1,6 +1,10 @@
 package game;
 
-import java.awt.*;
+import game.objects.Archer;
+import game.objects.Soldier;
+import game.objects.Tank;
+import game.objects.Unit;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,26 +34,19 @@ public class Game {
         int y = armyCount > 1 ? boardWidth - 2 : 0;
         List<Integer> pawnPlaces = drawWithoutRepetition();
         int currentIteration = 0;
-        Unit pawn;
 
-        switch (army) {
-            case "human":
-                pawn = new Unit("YELLOW");
-                break;
-            case "goblin":
-                pawn = new Unit("GREEN");
-                break;
-            case "monster":
-                pawn = new Unit("RED");
-                break;
-            default:
-                pawn = new Unit("BLUE");
-        }
 
         for (int i = 0; i < x; i++) {
             for (int j = y; j < y + 2; j++) {
                 if (pawnPlaces.contains(currentIteration)) {
-                    hexagons[i][j].setGameObject(pawn);
+                    int random = (int) (Math.random() * 100);
+                    if (random < 30) {
+                        hexagons[i][j].setGameObject(new Tank(army));
+                    } else if (random < 60) {
+                        hexagons[i][j].setGameObject(new Archer(army));
+                    } else {
+                        hexagons[i][j].setGameObject(new Soldier(army));
+                    }
                 }
                 currentIteration++;
             }
@@ -62,7 +59,7 @@ public class Game {
             list.add(i);
         }
         Collections.shuffle(list);
-        return list.subList(0,8);
+        return list.subList(0,6);
     }
 
     public void assignPlayerIDs() {

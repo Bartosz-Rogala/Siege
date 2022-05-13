@@ -1,5 +1,7 @@
 package game;
 
+import game.objects.GameObject;
+
 public class Hexagon {
 
     private boolean isFilled;

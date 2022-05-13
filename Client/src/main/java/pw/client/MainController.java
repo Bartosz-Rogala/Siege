@@ -58,7 +58,6 @@ public class MainController extends Thread implements Initializable {
         }
 
         board = new Board(hexagons);
-        board.addNeighbours(1);
         send("first:" + army);
         this.start();
     }
@@ -71,8 +70,6 @@ public class MainController extends Thread implements Initializable {
                 System.out.println("reader: " + msg);
                 String[] tokens = msg.split(":");
 
-
-
                 String[] hexes = tokens[2].split(";");
                 board.parseMessage(hexes);
 
@@ -84,11 +81,13 @@ public class MainController extends Thread implements Initializable {
     }
 
     public void hexOnClicked(MouseEvent event) {
+        Polygon source = (Polygon) event.getSource();
 
-        if (board.isAnyHexActive()) {
-            if (board.isActiveNeighbour((Polygon) event.getSource())) {
+        if (board.isAnyHexActive() && board.isFilledIn(source)) {
+            if (board.isActiveNeighbour(source)) {
                 board.deactivateAll();
                 board.activate((Polygon) event.getSource());
+                send(StartController.username + ":" + army + ":" + board.getContent());
             } else {
                 board.deactivateAll();
             }
@@ -97,7 +96,7 @@ public class MainController extends Thread implements Initializable {
             board.activate((Polygon) event.getSource());
         }
 
-        send(StartController.username + ":" + army + ":" + board.getContent());
+
     }
 
     public void send(String msg) {
