@@ -1,8 +1,5 @@
 package pw.client;
 
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 public class Board {
@@ -34,7 +31,7 @@ public class Board {
 
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                if (hexagons[i][j].getIsActive()) {
+                if (hexagons[i][j].isActive()) {
                     return true;
                 }
             }
@@ -63,7 +60,7 @@ public class Board {
     public boolean isActiveNeighbour (Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                if (hexagons[i][j].getIsActive()) {
+                if (hexagons[i][j].isActive()) {
                     for (Hexagon neighbour: hexagons[i][j].getNeighbours()) {
                         if (neighbour.getHex().getId().equals(hex.getId())) {
                             return true;
@@ -78,7 +75,7 @@ public class Board {
     public boolean isFilledIn (Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                if (hexagons[i][j].isFilled()) {
+                if (hexagons[i][j].getHex().getId().equals(hex.getId()) && hexagons[i][j].isFilled()) {
                     return true;
                 }
             }
@@ -94,6 +91,25 @@ public class Board {
             }
         }
         return content;
+    }
+
+    public void move(Polygon hex) {
+        Hexagon from = hexagons[0][0];
+        Hexagon to = hexagons[0][0];
+        for (int i = 0; i < hexagons.length; i++) {
+            for (int j = 0; j < hexagons[i].length; j++) {
+                if (hexagons[i][j].isFilled() && hexagons[i][j].isActive()) {
+                    from = hexagons[i][j];
+                }
+                if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
+                    to = hexagons[i][j];
+                }
+            }
+        }
+
+        System.out.println(from.getType() + ", " + from.getRace() + ", " + from.getMoveRadius() + ", " + from.getShootRadius());
+        to.populate(from.getType(), from.getRace(), from.getMoveRadius(), from.getShootRadius());
+        from.clear();
     }
 
     public void addMoveNeighbours(Hexagon hex, int radius, int i, int j) {

@@ -83,16 +83,20 @@ public class MainController extends Thread implements Initializable {
     public void hexOnClicked(MouseEvent event) {
         Polygon source = (Polygon) event.getSource();
 
-        if (board.isAnyHexActive() && board.isFilledIn(source)) {
+        if (board.isAnyHexActive() && !board.isFilledIn(source)) {
             if (board.isActiveNeighbour(source)) {
+
+                System.out.println("move");
+                board.move((Polygon) event.getSource());
                 board.deactivateAll();
-                board.activate((Polygon) event.getSource());
                 send(StartController.username + ":" + army + ":" + board.getContent());
             } else {
+                System.out.println("just deactivate");
                 board.deactivateAll();
             }
 
-        } else {
+        } else if (board.isFilledIn(source)) {
+            System.out.println("just activate");
             board.activate((Polygon) event.getSource());
         }
 

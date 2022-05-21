@@ -1,6 +1,5 @@
 package pw.client;
 
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -70,7 +69,7 @@ public class Hexagon {
         return moveNeighbours;
     }
 
-    public boolean getIsActive() {
+    public boolean isActive() {
         return this.isActive;
     }
 
@@ -110,6 +109,20 @@ public class Hexagon {
 
     public int getShootRadius() {
         return shootRadius;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void clear() {
+        this.isFilled = false;
+        this.url.setLength(0);
+        this.hex.setFill(Color.TRANSPARENT);
     }
 
     @Override
