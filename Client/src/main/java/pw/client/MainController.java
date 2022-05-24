@@ -70,7 +70,7 @@ public class MainController extends Thread implements Initializable {
                 System.out.println("reader: " + msg);
                 String[] tokens = msg.split(":");
 
-                String[] hexes = tokens[2].split(";");
+                String[] hexes = tokens[1].split(";");
                 board.parseMessage(hexes);
 
             }

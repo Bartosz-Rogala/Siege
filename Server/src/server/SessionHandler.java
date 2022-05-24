@@ -1,6 +1,7 @@
 package server;
 
 import game.Game;
+import game.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,8 +11,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class SessionHandler extends Thread {
-    private Socket socket1;
-    private Socket socket2;
+    private Player player1;
+    private Player player2;
     private Game game;
     private BufferedReader reader1;
     private BufferedReader reader2;
@@ -20,16 +21,20 @@ public class SessionHandler extends Thread {
 
     public SessionHandler(Socket socket1, Socket socket2) {
         try {
-            this.socket1 = socket1;
-            this.socket2 = socket2;
+            this.player1 = new Player();
+            this.player2 = new Player();
 
-            this.game = new Game();
+            player1.setSocket(socket1);
+            player2.setSocket(socket2);
 
-            this.reader1 = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
-            this.reader2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
+            this.game = new Game(player1, player2);
 
-            this.writer1 = new PrintWriter(socket1.getOutputStream(), true);
-            this.writer2 = new PrintWriter(socket2.getOutputStream(), true);
+
+            this.reader1 = new BufferedReader(new InputStreamReader(player1.getSocket().getInputStream()));
+            this.reader2 = new BufferedReader(new InputStreamReader(player2.getSocket().getInputStream()));
+
+            this.writer1 = new PrintWriter(player1.getSocket().getOutputStream(), true);
+            this.writer2 = new PrintWriter(player2.getSocket().getOutputStream(), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,72 +43,11 @@ public class SessionHandler extends Thread {
     @Override
     public void run() {
         Runnable r = () -> {
-            try {
-                String msg1;
-
-                while ((msg1 = reader1.readLine()) != null) {
-                    String response = msg1;
-
-                    String[] tokens = msg1.split(":");
-                    if (tokens[0].equals("first")) {
-                        game.generateArmy(tokens[1]);
-                        response = "first:" + tokens[0] + ":" + game.toString();
-                    }
-
-                    System.out.println(response);
-                    writer1.println(response);
-                    writer2.println(response);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    reader1.close();
-
-                    writer1.close();
-                    writer2.close();
-
-                    socket1.close();
-                    socket2.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            doRun(player1, reader2, writer1, writer2);
         };
 
         Runnable r2 = () -> {
-            try {
-                String msg2;
-                while ((msg2 = reader2.readLine()) != null) {
-                    String response = msg2;
-
-                    String[] tokens = msg2.split(":");
-                    if (tokens[0].equals("first")) {
-                        game.generateArmy(tokens[1]);
-                        response = "first:" + tokens[0] + ":" + game.toString();
-                    }
-
-                    System.out.println(response);
-                    writer1.println(response);
-                    writer2.println(response);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    reader1.close();
-
-                    writer1.close();
-                    writer2.close();
-
-                    socket1.close();
-                    socket2.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            doRun(player2, reader1, writer1, writer2);
         };
 
         Thread t1 = new Thread(r);
@@ -113,4 +57,44 @@ public class SessionHandler extends Thread {
 
     }
 
+    public void doRun(Player player, BufferedReader reader, PrintWriter w1, PrintWriter w2) {
+        try {
+            String msg;
+            while ((msg = reader.readLine()) != null) {
+                String response;
+
+                String[] tokens = msg.split(":");
+                if (tokens[0].equals("first")) {
+                    game.generateArmy(tokens[1]);
+
+                    response = tokens[0] + ":" + game.toString();
+                } else {
+                    player.setPlayerName(tokens[0]);
+                    game.makeMove(player.getPlayerId());
+                    game.updateGame(tokens[1]);
+
+                    response = tokens[0] + ":" + tokens[1];
+                }
+
+
+                System.out.println(response);
+                w1.println(response);
+                w2.println(response);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                reader.close();
+
+                w1.close();
+                w2.close();
+
+                player.getSocket().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
