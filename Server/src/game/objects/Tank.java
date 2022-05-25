@@ -3,7 +3,7 @@ package game.objects;
 public class Tank extends Unit {
 
     public Tank(String race) {
-        super(race,1,1);
+        super(race,2,17,1,1);
     }
 
     @Override

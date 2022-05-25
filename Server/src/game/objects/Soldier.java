@@ -5,7 +5,7 @@ import java.net.Socket;
 public class Soldier extends Unit {
 
     public Soldier(String race) {
-        super(race,2,1);
+        super(race, 4, 12,2,1);
     }
 
     @Override

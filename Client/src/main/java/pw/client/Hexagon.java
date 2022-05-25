@@ -14,6 +14,8 @@ public class Hexagon {
     private boolean isFilled;
     private String race;
     private String type;
+    private int attack;
+    private int healthPoints;
     private int moveRadius;
     private int shootRadius;
     private ArrayList<Hexagon> moveNeighbours;
@@ -24,10 +26,11 @@ public class Hexagon {
         this.hex = hex;
         this.isActive = false;
         this.isFilled = false;
-        moveNeighbours = new ArrayList<>();
+        this.moveNeighbours = new ArrayList<>();
+        this.shootNeighbours = new ArrayList<>();
     }
 
-    public void populate(String type, String race, int moveRadius, int shootRadius) {
+    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius) {
         url = new StringBuilder("C:\\Users\\01168103\\Intellij Projects\\Siege\\Client\\src\\main\\resources\\client\\pawns\\");
         switch (race) {
             case "goblin":
@@ -55,6 +58,8 @@ public class Hexagon {
 
         this.hex.setFill(new ImagePattern(new Image(url.toString())));
         this.isFilled = true;
+        this.attack = attack;
+        this.healthPoints = healthPoints;
         this.type = type;
         this.race = race;
         this.moveRadius = moveRadius;
@@ -65,8 +70,16 @@ public class Hexagon {
         moveNeighbours.add(neighbour);
     }
 
+    public void addShootNeighbours(Hexagon shootNeighbour) {
+        shootNeighbours.add(shootNeighbour);
+    }
+
     public ArrayList<Hexagon> getNeighbours() {
         return moveNeighbours;
+    }
+
+    public ArrayList<Hexagon> getShootNeighbours() {
+        return shootNeighbours;
     }
 
     public boolean isActive() {
@@ -86,22 +99,31 @@ public class Hexagon {
             this.hex.setFill(new ImagePattern(new Image(url.toString())));
             for (Hexagon hex: moveNeighbours) {
                 if (!hex.isFilled()) {
-                    hex.getHex().setStroke(Color.BLACK);
+                    hex.getHex().setFill(Color.GRAY);
+                    hex.getHex().opacityProperty().set(0.5);
                 }
+            }
+            for (Hexagon hex: shootNeighbours) {
+                hex.getHex().setStroke(Color.RED);
             }
         } else {
             if (isFilled && isActive) {
                 url = url.replace(url.lastIndexOf("_selected"), url.lastIndexOf("_selected") + 9, "");
                 this.hex.setFill(new ImagePattern(new Image(url.toString())));
                 this.hex.setStroke(Color.rgb(77,77,77,0.33));
+                for (Hexagon hex: shootNeighbours) {
+                    hex.getHex().setStroke(Color.rgb(77,77,77,0.33));
+                }
                 for (Hexagon hex: moveNeighbours) {
                     if (!hex.isFilled()) {
-                        hex.getHex().setStroke(Color.rgb(77,77,77,0.33));
+                        hex.getHex().setFill(Color.TRANSPARENT);
+                        hex.getHex().opacityProperty().set(1);
                     }
                 }
             } else {
                 this.hex.setFill(Color.TRANSPARENT);
                 this.hex.setStroke(Color.rgb(77,77,77,0.33));
+                this.hex.opacityProperty().set(1);
             }
             this.isActive = false;
         }
@@ -115,20 +137,28 @@ public class Hexagon {
         isFilled = filled;
     }
 
-    public int getMoveRadius() {
-        return moveRadius;
-    }
-
-    public int getShootRadius() {
-        return shootRadius;
+    public String getType() {
+        return type;
     }
 
     public String getRace() {
         return race;
     }
 
-    public String getType() {
-        return type;
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getMoveRadius() {
+        return moveRadius;
+    }
+
+    public int getShootRadius() {
+        return shootRadius;
     }
 
     public void clear() {
@@ -141,7 +171,7 @@ public class Hexagon {
     @Override
     public String toString() {
         if (isFilled) {
-            return isFilled + "," + type + "," + race + "," + moveRadius + "," + shootRadius;
+            return isFilled + "," + type + "," + race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius;
         } else {
             return isFilled + "";
         }
