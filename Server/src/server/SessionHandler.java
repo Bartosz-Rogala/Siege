@@ -43,11 +43,11 @@ public class SessionHandler extends Thread {
     @Override
     public void run() {
         Runnable r = () -> {
-            doRun(player1, reader2, writer1, writer2);
+            doRun(player1, reader1, writer1, writer2);
         };
 
         Runnable r2 = () -> {
-            doRun(player2, reader1, writer1, writer2);
+            doRun(player2, reader2, writer1, writer2);
         };
 
         Thread t1 = new Thread(r);
@@ -67,13 +67,13 @@ public class SessionHandler extends Thread {
                 if (tokens[0].equals("first")) {
                     game.generateArmy(tokens[1]);
 
-                    response = tokens[0] + ":" + game.toString();
+                    response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
                 } else {
                     player.setPlayerName(tokens[0]);
                     game.makeMove(player.getPlayerId());
                     game.updateGame(tokens[1]);
 
-                    response = tokens[0] + ":" + tokens[1];
+                    response = game.getCurrentPlayer().getSocket().getPort() + ":" + tokens[1];
                 }
 
 

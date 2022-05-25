@@ -20,6 +20,7 @@ public class Board {
                     hexagons[i][j].populate(tokens[1], tokens[2], Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]));
                     addMoveNeighbours(hexagons[i][j], hexagons[i][j].getMoveRadius(), i, j);
                 } else {
+                    hexagons[i][j].setFilled(false);
                     hexagons[i][j].setIsActive(false);
                 }
                 k++;
@@ -42,7 +43,9 @@ public class Board {
     public void deactivateAll() {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                hexagons[i][j].setIsActive(false);
+                if (hexagons[i][j].isActive()) {
+                    hexagons[i][j].setIsActive(false);
+                }
             }
         }
     }
@@ -107,7 +110,6 @@ public class Board {
             }
         }
 
-        System.out.println(from.getType() + ", " + from.getRace() + ", " + from.getMoveRadius() + ", " + from.getShootRadius());
         to.populate(from.getType(), from.getRace(), from.getMoveRadius(), from.getShootRadius());
         from.clear();
     }

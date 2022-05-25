@@ -4,20 +4,28 @@ import game.objects.GameObject;
 
 public class Hexagon {
 
+    private boolean isChanged;
     private boolean isFilled;
     private GameObject gameObject;
 
 
     public Hexagon() {
         isFilled = false;
+        isChanged = false;
     }
 
     public boolean isFilled() {
         return isFilled;
     }
+    public boolean isChanged() {
+        return isChanged;
+    }
 
     public void setFilled(boolean filled) {
         this.isFilled = filled;
+    }
+    public void setChanged(boolean changed) {
+        this.isChanged = changed;
     }
 
     public GameObject getGameObject() {
@@ -37,5 +45,6 @@ public class Hexagon {
     @Override
     public String toString() {
         return isFilled + "," + gameObject;
+//        return isChanged + "," + isFilled + "," + gameObject;
     }
 }

@@ -86,7 +86,6 @@ public class Game {
     }
 
     public void makeMove(int playerId) {
-
         if (movesLeftInRound > 0 && playerId == currentPlayer.getPlayerId()) {
             System.out.println(currentPlayer.getPlayerName() + " moved.");
             movesLeftInRound--;

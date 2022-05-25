@@ -82,17 +82,25 @@ public class Hexagon {
         if (active) {
             this.isActive = true;
             url = url.replace(url.lastIndexOf(".png"), url.lastIndexOf(".png"), "_selected");
-            System.out.println(url);
+
             this.hex.setFill(new ImagePattern(new Image(url.toString())));
             for (Hexagon hex: moveNeighbours) {
-                hex.getHex().setStroke(Color.BLACK);
+                if (!hex.isFilled()) {
+                    hex.getHex().setStroke(Color.BLACK);
+                }
             }
         } else {
             if (isFilled && isActive) {
                 url = url.replace(url.lastIndexOf("_selected"), url.lastIndexOf("_selected") + 9, "");
                 this.hex.setFill(new ImagePattern(new Image(url.toString())));
                 this.hex.setStroke(Color.rgb(77,77,77,0.33));
+                for (Hexagon hex: moveNeighbours) {
+                    if (!hex.isFilled()) {
+                        hex.getHex().setStroke(Color.rgb(77,77,77,0.33));
+                    }
+                }
             } else {
+                this.hex.setFill(Color.TRANSPARENT);
                 this.hex.setStroke(Color.rgb(77,77,77,0.33));
             }
             this.isActive = false;
@@ -101,6 +109,10 @@ public class Hexagon {
 
     public Polygon getHex() {
         return this.hex;
+    }
+
+    public void setFilled(boolean filled) {
+        isFilled = filled;
     }
 
     public int getMoveRadius() {
@@ -120,6 +132,7 @@ public class Hexagon {
     }
 
     public void clear() {
+        System.out.println("Hex is cleared");
         this.isFilled = false;
         this.url.setLength(0);
         this.hex.setFill(Color.TRANSPARENT);

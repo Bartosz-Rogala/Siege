@@ -27,7 +27,6 @@ public class ChoiceController {
 
     public ChoiceController (StartController startController) {
         this.startController = startController;
-
     }
 
     @FXML

@@ -28,6 +28,7 @@ public class MainController extends Thread implements Initializable {
     private Hexagon[][] hexagons;
     int maxI = 9;
     int maxJ = 13;
+    String currentPort;
 
     public MainController(ChoiceController choiceController, String army) {
         this.choiceController = choiceController;
@@ -71,6 +72,7 @@ public class MainController extends Thread implements Initializable {
                 String[] tokens = msg.split(":");
 
                 String[] hexes = tokens[1].split(";");
+                currentPort = tokens[0];
                 board.parseMessage(hexes);
 
             }
@@ -83,35 +85,31 @@ public class MainController extends Thread implements Initializable {
     public void hexOnClicked(MouseEvent event) {
         Polygon source = (Polygon) event.getSource();
 
-        if (board.isAnyHexActive() && !board.isFilledIn(source)) {
-            if (board.isActiveNeighbour(source)) {
+        if (currentPort.equals("" + socket.getLocalPort())) {
 
-                System.out.println("move");
-                board.move((Polygon) event.getSource());
-                board.deactivateAll();
-                send(StartController.username + ":" + army + ":" + board.getContent());
+
+            if (board.isAnyHexActive() && !board.isFilledIn(source)) {
+                if (board.isActiveNeighbour(source)) {
+                    board.move((Polygon) event.getSource());
+                    send(StartController.username + ":" + board.getContent());
+                } else {
+                    board.deactivateAll();
+                }
+
+            } else if (!board.isAnyHexActive() && board.isFilledIn(source)) {
+                board.activate((Polygon) event.getSource());
             } else {
-                System.out.println("just deactivate");
                 board.deactivateAll();
             }
-
-        } else if (board.isFilledIn(source)) {
-            System.out.println("just activate");
-            board.activate((Polygon) event.getSource());
         }
-
 
     }
 
     public void send(String msg) {
 
-
         writer.println(msg);
         System.out.println(msg);
 
-        if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
-            System.exit(0);
-        }
     }
 
 
