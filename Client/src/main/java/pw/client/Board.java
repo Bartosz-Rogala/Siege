@@ -61,26 +61,22 @@ public class Board {
         }
     }
 
-    public boolean isActiveNeighbour (Polygon hex) {
+    public boolean isOpponent (String currentPort, Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                if (hexagons[i][j].isActive()) {
-                    for (Hexagon neighbour: hexagons[i][j].getNeighbours()) {
-                        if (neighbour.getHex().getId().equals(hex.getId())) {
-                            return true;
-                        }
-                    }
+                if (hexagons[i][j].getHex().getId().equals(hex.getId()) && !hexagons[i][j].getOwner().equals(currentPort)) {
+                    return true;
                 }
             }
         }
         return false;
     }
 
-    public boolean isActiveShootNeighbour (Polygon hex) {
+    public boolean isActiveNeighbour (Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
                 if (hexagons[i][j].isActive()) {
-                    for (Hexagon neighbour: hexagons[i][j].getShootNeighbours()) {
+                    for (Hexagon neighbour: hexagons[i][j].getNeighbours()) {
                         if (neighbour.getHex().getId().equals(hex.getId())) {
                             return true;
                         }
@@ -102,34 +98,22 @@ public class Board {
         return false;
     }
 
-    public String getContent() {
-        String content = "";
-        for (int i = 0; i < hexagons.length; i++) {
-            for (int j = 0; j < hexagons[i].length; j++) {
-                content += hexagons[i][j].toString() + ";";
-            }
-        }
-        return content;
-    }
+    public String takeAction(String actionType, Polygon hex) {
+        Hexagon origin = hexagons[0][0];
+        Hexagon destination = hexagons[0][0];
 
-    public void move(Polygon hex) {
-        Hexagon from = hexagons[0][0];
-        Hexagon to = hexagons[0][0];
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
                 if (hexagons[i][j].isFilled() && hexagons[i][j].isActive()) {
-                    from = hexagons[i][j];
+                    origin = hexagons[i][j];
                 }
                 if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
-                    to = hexagons[i][j];
+                    destination = hexagons[i][j];
                 }
             }
         }
 
-        to.populate(from.getType(), from.getRace(), from.getAttack(), from.getHealthPoints(), from.getMoveRadius(), from.getShootRadius(), from.getOwner());
-        deactivateAll();
-        to.setIsActive(false);
-        from.clear();
+        return actionType + "/" + origin + "/" + destination;
     }
 
     public void addMoveNeighbours(Hexagon hex, int radius, int i, int j) {

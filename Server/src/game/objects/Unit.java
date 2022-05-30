@@ -25,6 +25,42 @@ public class Unit extends GameObject {
         this.owner = owner;
     }
 
+    public int getShootRadius() {
+        return shootRadius;
+    }
+
+    public int getMoveRadius() {
+        return moveRadius;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void attack(Unit attacker) {
+        this.healthPoints -= attacker.getAttack();
+    }
+
+    public boolean isDead() {
+        if (healthPoints <= 0)
+            return true;
+
+
+        return false;
+    }
+
     @Override
     public String toString() {
         return race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner.getSocket().getPort();

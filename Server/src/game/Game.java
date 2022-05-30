@@ -32,7 +32,7 @@ public class Game {
     public void initializeHexagons() {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                hexagons[i][j] = new Hexagon();
+                hexagons[i][j] = new Hexagon(i, j);
             }
         }
     }
@@ -50,11 +50,11 @@ public class Game {
                 if (pawnPlaces.contains(currentIteration)) {
                     int random = (int) (Math.random() * 100);
                     if (random < 30) {
-                        hexagons[i][j].setGameObject(new Tank(owner, army));
+                        hexagons[i][j].setUnit(new Tank(owner, army));
                     } else if (random < 60) {
-                        hexagons[i][j].setGameObject(new Archer(owner, army));
+                        hexagons[i][j].setUnit(new Archer(owner, army));
                     } else {
-                        hexagons[i][j].setGameObject(new Soldier(owner, army));
+                        hexagons[i][j].setUnit(new Soldier(owner, army));
                     }
                 }
                 currentIteration++;
@@ -85,12 +85,39 @@ public class Game {
         return this.currentPlayer;
     }
 
-    public void makeMove(int playerId) {
+
+    public void updateGame(String currentPositions) {
+
+    }
+
+    public void attack(String attacker, String victim) {
+        System.out.println("attacking");
+        String[] attackerTokens = attacker.split(",");
+        String[] victimTokens = victim.split(",");
+
+        Hexagon attackerHex = hexagons[Integer.parseInt(attackerTokens[1])][Integer.parseInt(attackerTokens[2])];
+        Hexagon victimHex = hexagons[Integer.parseInt(victimTokens[1])][Integer.parseInt(victimTokens[2])];
+
+        victimHex.getUnit().attack(attackerHex.getUnit());
+
+        if (victimHex.getUnit().isDead()) {
+            victimHex.clear();
+        }
+    }
+
+    public void move(String from, String to) {
+        System.out.println("moving");
+        String[] fromTokens = from.split(",");
+        String[] toTokens = to.split(",");
+
+        hexagons[Integer.parseInt(toTokens[1])][Integer.parseInt(toTokens[2])].move(hexagons[Integer.parseInt(fromTokens[1])][Integer.parseInt(fromTokens[2])]);
+        hexagons[Integer.parseInt(fromTokens[1])][Integer.parseInt(fromTokens[2])].clear();
+    }
+
+    public void countTurn(int playerId) {
         if (movesLeftInRound > 0 && playerId == currentPlayer.getPlayerId()) {
-            System.out.println(currentPlayer.getPlayerName() + " moved.");
             movesLeftInRound--;
             if (movesLeftInRound == 0) {
-                System.out.println("changing player");
                 if (currentPlayer.getPlayerId() == player1.getPlayerId()) {
                     currentPlayer = player2;
                 } else {
@@ -99,12 +126,8 @@ public class Game {
                 movesLeftInRound = MOVES_IN_A_ROUND;
             }
         }
-
     }
 
-    public void updateGame(String currentPositions) {
-
-    }
     @Override
     public String toString() {
         String msg = "";

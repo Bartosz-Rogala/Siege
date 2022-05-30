@@ -61,23 +61,34 @@ public class SessionHandler extends Thread {
         try {
             String msg;
             while ((msg = reader.readLine()) != null) {
+
                 String response;
 
                 String[] tokens = msg.split(":");
+
                 if (tokens[0].equals("first")) {
                     game.generateArmy(player, tokens[1]);
 
-                    response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
+
                 } else {
                     player.setPlayerName(tokens[0]);
-                    game.makeMove(player.getPlayerId());
-                    game.updateGame(tokens[1]);
+                    game.countTurn(player.getPlayerId());
 
-                    response = game.getCurrentPlayer().getSocket().getPort() + ":" + tokens[1];
+                    String[] actionTokens = tokens[1].split("/");
+
+
+                    if(actionTokens[0].equals("attack")) {
+                        game.attack(actionTokens[1], actionTokens[2]);
+                    } else if (actionTokens[0].equals("move")) {
+                        game.move(actionTokens[1], actionTokens[2]);
+                    }
+
                 }
 
+                response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
 
-                System.out.println(response);
+
+                System.out.println("response: " + response);
                 w1.println(response);
                 w2.println(response);
 

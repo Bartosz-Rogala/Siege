@@ -2,8 +2,6 @@ package pw.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -54,7 +52,7 @@ public class MainController extends Thread implements Initializable {
             HBox hbox = (HBox) vbox01.getChildren().toArray()[i];
             for (int j = 0; j < hbox.getChildren().toArray().length; j++) {
                 Polygon hex = (Polygon) hbox.getChildren().toArray()[j];
-                hexagons[i][j] = new Hexagon(hex);
+                hexagons[i][j] = new Hexagon(hex, i, j);
             }
         }
 
@@ -86,20 +84,30 @@ public class MainController extends Thread implements Initializable {
         Polygon source = (Polygon) event.getSource();
 
         if (currentPort.equals("" + socket.getLocalPort())) {
+            if (board.isAnyHexActive()) {
+                if (board.isFilledIn(source)) {
+                    if(board.isOpponent(currentPort, source)) {
 
-
-            if (board.isAnyHexActive() && !board.isFilledIn(source)) {
-                if (board.isActiveNeighbour(source)) {
-                    board.move((Polygon) event.getSource());
-                    send(StartController.username + ":" + board.getContent());
+                        send(StartController.username + ":" + board.takeAction("attack", (Polygon) event.getSource()));
+                        board.deactivateAll();
+                        System.out.println("attack");
+                    } else {
+                        board.deactivateAll();
+                        board.activate(currentPort, source);
+                    }
                 } else {
-                    board.deactivateAll();
+                    if (board.isActiveNeighbour(source)) {
+                        System.out.println("move");
+//                        board.move((Polygon) event.getSource());
+//                        send(StartController.username + ":" + board.getContent());
+                        send(StartController.username + ":" + board.takeAction("move", (Polygon) event.getSource()));
+                        board.deactivateAll();
+                    } else {
+                        board.deactivateAll();
+                    }
                 }
-
-            } else if (!board.isAnyHexActive() && board.isFilledIn(source)) {
-                board.activate(currentPort, (Polygon) event.getSource());
-            } else {
-                board.deactivateAll();
+            } else if (board.isFilledIn(source)) {
+                board.activate(currentPort, source);
             }
         }
 

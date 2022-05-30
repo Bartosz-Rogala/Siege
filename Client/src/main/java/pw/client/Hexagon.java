@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class Hexagon {
 
+    private int i;
+    private int j;
     private Polygon hex;
     private boolean isActive;
     private boolean isFilled;
@@ -23,7 +25,9 @@ public class Hexagon {
     StringBuilder url;
     String owner;
 
-    public Hexagon(Polygon hex) {
+    public Hexagon(Polygon hex, int i, int j) {
+        this.i = i;
+        this.j = j;
         this.hex = hex;
         this.isActive = false;
         this.isFilled = false;
@@ -167,19 +171,12 @@ public class Hexagon {
         return owner;
     }
 
-    public void clear() {
-        System.out.println("Hex is cleared");
-        this.isFilled = false;
-        this.url.setLength(0);
-        this.hex.setFill(Color.TRANSPARENT);
-    }
-
     @Override
     public String toString() {
         if (isFilled) {
-            return isFilled + "," + type + "," + race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner;
+            return isFilled + "," + i + "," + j + "," + type + "," + race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner;
         } else {
-            return isFilled + "";
+            return isFilled + "," + i + "," + j;
         }
 
     }
