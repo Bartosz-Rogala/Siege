@@ -17,7 +17,7 @@ public class Board {
             for (int j = 0; j < hexagons[i].length; j++) {
                 String[] tokens = hexes[k].split(",");
                 if (tokens[0].equals("true")) {
-                    hexagons[i][j].populate(tokens[1], tokens[2], Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), Integer.valueOf(tokens[5]), Integer.valueOf(tokens[6]));
+                    hexagons[i][j].populate(tokens[1], tokens[2], Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), Integer.valueOf(tokens[5]), Integer.valueOf(tokens[6]), tokens[7]);
                     addMoveNeighbours(hexagons[i][j], hexagons[i][j].getMoveRadius(), i, j);
                     addShootNeighbours(hexagons[i][j], hexagons[i][j].getShootRadius(), i, j);
                 } else {
@@ -51,10 +51,10 @@ public class Board {
         }
     }
 
-    public void activate (Polygon hex) {
+    public void activate (String currentPort, Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
-                if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
+                if (hexagons[i][j].getHex().getId().equals(hex.getId()) && hexagons[i][j].getOwner().equals(currentPort)) {
                     hexagons[i][j].setIsActive(true);
                 }
             }
@@ -126,7 +126,7 @@ public class Board {
             }
         }
 
-        to.populate(from.getType(), from.getRace(), from.getAttack(), from.getHealthPoints(), from.getMoveRadius(), from.getShootRadius());
+        to.populate(from.getType(), from.getRace(), from.getAttack(), from.getHealthPoints(), from.getMoveRadius(), from.getShootRadius(), from.getOwner());
         deactivateAll();
         to.setIsActive(false);
         from.clear();

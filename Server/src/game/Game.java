@@ -37,7 +37,7 @@ public class Game {
         }
     }
 
-    public void generateArmy(String army) {
+    public void generateArmy(Player owner, String army) {
         armyCount++;
         int x = BOARD_HEIGHT;
         int y = armyCount > 1 ? BOARD_WIDTH - 2 : 0;
@@ -50,11 +50,11 @@ public class Game {
                 if (pawnPlaces.contains(currentIteration)) {
                     int random = (int) (Math.random() * 100);
                     if (random < 30) {
-                        hexagons[i][j].setGameObject(new Tank(army));
+                        hexagons[i][j].setGameObject(new Tank(owner, army));
                     } else if (random < 60) {
-                        hexagons[i][j].setGameObject(new Archer(army));
+                        hexagons[i][j].setGameObject(new Archer(owner, army));
                     } else {
-                        hexagons[i][j].setGameObject(new Soldier(army));
+                        hexagons[i][j].setGameObject(new Soldier(owner, army));
                     }
                 }
                 currentIteration++;

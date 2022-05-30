@@ -1,9 +1,12 @@
 package game.objects;
 
+
+import game.Player;
+
 public class Tank extends Unit {
 
-    public Tank(String race) {
-        super(race,2,17,1,1);
+    public Tank(Player owner, String race) {
+        super(owner, race,2,17,1,1);
     }
 
     @Override

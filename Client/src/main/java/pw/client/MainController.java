@@ -97,7 +97,7 @@ public class MainController extends Thread implements Initializable {
                 }
 
             } else if (!board.isAnyHexActive() && board.isFilledIn(source)) {
-                board.activate((Polygon) event.getSource());
+                board.activate(currentPort, (Polygon) event.getSource());
             } else {
                 board.deactivateAll();
             }

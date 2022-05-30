@@ -65,7 +65,7 @@ public class SessionHandler extends Thread {
 
                 String[] tokens = msg.split(":");
                 if (tokens[0].equals("first")) {
-                    game.generateArmy(tokens[1]);
+                    game.generateArmy(player, tokens[1]);
 
                     response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
                 } else {

@@ -21,6 +21,7 @@ public class Hexagon {
     private ArrayList<Hexagon> moveNeighbours;
     private ArrayList<Hexagon> shootNeighbours;
     StringBuilder url;
+    String owner;
 
     public Hexagon(Polygon hex) {
         this.hex = hex;
@@ -30,7 +31,7 @@ public class Hexagon {
         this.shootNeighbours = new ArrayList<>();
     }
 
-    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius) {
+    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius, String owner) {
         url = new StringBuilder("C:\\Users\\01168103\\Intellij Projects\\Siege\\Client\\src\\main\\resources\\client\\pawns\\");
         switch (race) {
             case "goblin":
@@ -64,6 +65,7 @@ public class Hexagon {
         this.race = race;
         this.moveRadius = moveRadius;
         this.shootRadius = shootRadius;
+        this.owner = owner;
     }
 
     public void addNeighbour(Hexagon neighbour) {
@@ -161,6 +163,10 @@ public class Hexagon {
         return shootRadius;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
     public void clear() {
         System.out.println("Hex is cleared");
         this.isFilled = false;
@@ -171,7 +177,7 @@ public class Hexagon {
     @Override
     public String toString() {
         if (isFilled) {
-            return isFilled + "," + type + "," + race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius;
+            return isFilled + "," + type + "," + race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner;
         } else {
             return isFilled + "";
         }
