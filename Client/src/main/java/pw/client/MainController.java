@@ -2,6 +2,7 @@ package pw.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -71,8 +72,8 @@ public class MainController extends Thread implements Initializable {
 
                 String[] hexes = tokens[1].split(";");
                 currentPort = tokens[0];
+                board.deactivateAll();
                 board.parseMessage(hexes);
-
             }
 
         } catch (Exception e) {
@@ -86,7 +87,7 @@ public class MainController extends Thread implements Initializable {
         if (currentPort.equals("" + socket.getLocalPort())) {
             if (board.isAnyHexActive()) {
                 if (board.isFilledIn(source)) {
-                    if(board.isOpponent(currentPort, source)) {
+                    if(board.isOpponent(currentPort, source) && board.isShootingActiveNeighbour(source)) {
 
                         send(StartController.username + ":" + board.takeAction("attack", (Polygon) event.getSource()));
                         board.deactivateAll();
@@ -97,10 +98,34 @@ public class MainController extends Thread implements Initializable {
                     }
                 } else {
                     if (board.isActiveNeighbour(source)) {
-                        System.out.println("move");
-//                        board.move((Polygon) event.getSource());
-//                        send(StartController.username + ":" + board.getContent());
-                        send(StartController.username + ":" + board.takeAction("move", (Polygon) event.getSource()));
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            System.out.println("move");
+                            send(StartController.username + ":" + board.takeAction("move", (Polygon) event.getSource()));
+                        } else if (event.getButton() == MouseButton.SECONDARY && board.canBuild() && board.isShootingActiveNeighbour(source)) {
+                            System.out.println("build");
+                            send(StartController.username + ":" + board.takeAction("build", (Polygon) event.getSource()));
+                        }
+
+                    } else {
+                        board.deactivateAll();
+                    }
+                }
+            } else if (board.isFilledIn(source)) {
+                board.activate(currentPort, source);
+            }
+        }
+
+    }
+
+    public void hexOnRightClicked(MouseEvent event) {
+        Polygon source = (Polygon) event.getSource();
+
+        if (currentPort.equals("" + socket.getLocalPort())) {
+            if (board.isAnyHexActive()) {
+                if (!board.isFilledIn(source)) {
+                    if (board.isActiveNeighbour(source)) {
+                        System.out.println("build");
+                        send(StartController.username + ":" + board.takeAction("build", (Polygon) event.getSource()));
                         board.deactivateAll();
                     } else {
                         board.deactivateAll();
@@ -112,6 +137,7 @@ public class MainController extends Thread implements Initializable {
         }
 
     }
+
 
     public void send(String msg) {
 

@@ -76,11 +76,16 @@ public class SessionHandler extends Thread {
 
                     String[] actionTokens = tokens[1].split("/");
 
-
-                    if(actionTokens[0].equals("attack")) {
-                        game.attack(actionTokens[1], actionTokens[2]);
-                    } else if (actionTokens[0].equals("move")) {
-                        game.move(actionTokens[1], actionTokens[2]);
+                    switch (actionTokens[0]) {
+                        case "attack":
+                            game.attack(actionTokens[1], actionTokens[2]);
+                            break;
+                        case "move":
+                            game.move(actionTokens[1], actionTokens[2]);
+                            break;
+                        case "build":
+                            game.build(actionTokens[1], actionTokens[2]);
+                            break;
                     }
 
                 }

@@ -3,10 +3,10 @@ package game.objects;
 
 import game.Player;
 
-public class Tank extends Unit {
+public class MeleeTank extends Unit {
 
-    public Tank(Player owner, String race) {
-        super(owner, race,2,17,1,1);
+    public MeleeTank(Player owner, String race) {
+        super(owner, race,15,30,90,3,2);
     }
 
     @Override

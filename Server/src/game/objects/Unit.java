@@ -2,9 +2,12 @@ package game.objects;
 
 import game.Player;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Unit extends GameObject {
     private String race;
-    private int attack;
+    private int maxAttackDmg;
+    private int minAttackDmg;
     private int healthPoints;
     private int moveRadius;
     private int shootRadius;
@@ -16,9 +19,10 @@ public class Unit extends GameObject {
         race = "human";
     }
 
-    public Unit(Player owner, String race, int attack, int healthPoints, int moveRadius, int shootRadius) {
+    public Unit(Player owner, String race, int minAttackDmg, int maxAttackDmg, int healthPoints, int moveRadius, int shootRadius) {
         this.race = race;
-        this.attack = attack;
+        this.maxAttackDmg = maxAttackDmg;
+        this.minAttackDmg = minAttackDmg;
         this.healthPoints = healthPoints;
         this.moveRadius = moveRadius;
         this.shootRadius = shootRadius;
@@ -45,12 +49,15 @@ public class Unit extends GameObject {
         return healthPoints;
     }
 
-    public int getAttack() {
-        return attack;
+    public int getMaxAttackDmg() {
+        return maxAttackDmg;
+    }
+    public int getMinAttackDmg() {
+        return minAttackDmg;
     }
 
     public void attack(Unit attacker) {
-        this.healthPoints -= attacker.getAttack();
+        this.healthPoints -= ThreadLocalRandom.current().nextInt(attacker.getMinAttackDmg(), attacker.getMaxAttackDmg() + 1);
     }
 
     public boolean isDead() {
@@ -63,6 +70,6 @@ public class Unit extends GameObject {
 
     @Override
     public String toString() {
-        return race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner.getSocket().getPort();
+        return race + "," + maxAttackDmg + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner.getSocket().getPort();
     }
 }

@@ -47,6 +47,9 @@ public class Hexagon {
             case "monster":
                 url.append("monster\\");
                 break;
+            default:
+                url.append("other\\");
+                break;
         }
 
         switch (type) {
@@ -58,6 +61,12 @@ public class Hexagon {
                 break;
             case "tank":
                 url.append("shield.png");
+                break;
+            case "builder":
+                url.append("hammer.png");
+                break;
+            case "obstacle":
+                url.append("obstacle.png");
                 break;
         }
 

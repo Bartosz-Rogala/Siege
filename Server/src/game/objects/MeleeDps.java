@@ -2,12 +2,10 @@ package game.objects;
 
 import game.Player;
 
-import java.net.Socket;
+public class MeleeDps extends Unit {
 
-public class Soldier extends Unit {
-
-    public Soldier(Player owner, String race) {
-        super(owner, race,4, 12,2,1);
+    public MeleeDps(Player owner, String race) {
+        super(owner, race, 35,50, 60,3,2);
     }
 
     @Override
