@@ -18,11 +18,10 @@ public class Board {
                 String[] tokens = hexes[k].split(",");
                 if (tokens[0].equals("true")) {
                     hexagons[i][j].populate(tokens[1], tokens[2], Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), Integer.valueOf(tokens[5]), Integer.valueOf(tokens[6]), tokens[7]);
-                    addMoveNeighbours(hexagons[i][j], hexagons[i][j].getMoveRadius(), i, j);
-                    addShootNeighbours(hexagons[i][j], hexagons[i][j].getShootRadius(), i, j);
                 } else {
                     hexagons[i][j].setFilled(false);
                     hexagons[i][j].setIsActive(false);
+                    hexagons[i][j].setBlocker(false);
                 }
                 k++;
             }
@@ -118,6 +117,17 @@ public class Board {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
                 if (hexagons[i][j].getHex().getId().equals(hex.getId()) && hexagons[i][j].isFilled()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isBlocker (Polygon hex) {
+        for (int i = 0; i < hexagons.length; i++) {
+            for (int j = 0; j < hexagons[i].length; j++) {
+                if (hexagons[i][j].getHex().getId().equals(hex.getId()) && hexagons[i][j].isBlocker()) {
                     return true;
                 }
             }
@@ -225,54 +235,66 @@ public class Board {
 
         if (radius >= 1) {
             if (i % 2 == 0) {
-                if (i - 1 >= 0 && !hexagons[i - 1][j].isFilled()) {
+                if (i - 1 >= 0) {
                     hex.addShootNeighbours(hexagons[i - 1][j]);
-                    addShootNeighbours(hex, radius-1, i-1, j);
-                    if (j - 1 >= 0 && !hexagons[i - 1][j - 1].isFilled()) {
+                    if (!hexagons[i - 1][j].isBlocker())
+                        addShootNeighbours(hex, radius-1, i-1, j);
+                    if (j - 1 >= 0) {
                         hex.addShootNeighbours(hexagons[i - 1][j - 1]);
-                        addShootNeighbours(hex, radius-1, i-1, j-1);
+                        if (!hexagons[i - 1][j - 1].isBlocker())
+                            addShootNeighbours(hex, radius-1, i-1, j-1);
                     }
                 }
-                if (i + 1 < maxI && !hexagons[i + 1][j].isFilled()) {
+                if (i + 1 < maxI) {
                     hex.addShootNeighbours(hexagons[i + 1][j]);
-                    addShootNeighbours(hex, radius-1, i+1, j);
-                    if (j - 1 >= 0 && !hexagons[i + 1][j - 1].isFilled()) {
+                    if (!hexagons[i + 1][j].isBlocker())
+                        addShootNeighbours(hex, radius-1, i+1, j);
+                    if (j - 1 >= 0) {
                         hex.addShootNeighbours(hexagons[i + 1][j - 1]);
-                        addShootNeighbours(hex, radius-1, i+1, j-1);
+                        if (!hexagons[i + 1][j - 1].isBlocker())
+                            addShootNeighbours(hex, radius-1, i+1, j-1);
                     }
                 }
-                if (j - 1 >= 0 && !hexagons[i][j - 1].isFilled()) {
+                if (j - 1 >= 0) {
                     hex.addShootNeighbours(hexagons[i][j - 1]);
-                    addShootNeighbours(hex, radius-1, i, j-1);
+                    if (!hexagons[i][j - 1].isBlocker())
+                        addShootNeighbours(hex, radius-1, i, j-1);
                 }
-                if (j + 1 < maxJ && !hexagons[i][j + 1].isFilled()) {
+                if (j + 1 < maxJ) {
                     hex.addShootNeighbours(hexagons[i][j + 1]);
-                    addShootNeighbours(hex, radius-1, i, j+1);
+                    if (!hexagons[i][j + 1].isBlocker())
+                        addShootNeighbours(hex, radius-1, i, j+1);
                 }
             } else {
-                if (i - 1 >= 0 && !hexagons[i - 1][j].isFilled()) {
+                if (i - 1 >= 0) {
                     hex.addShootNeighbours(hexagons[i - 1][j]);
-                    addShootNeighbours(hex, radius-1, i-1, j);
-                    if (j + 1 < maxJ && !hexagons[i - 1][j + 1].isFilled()) {
+                    if (!hexagons[i - 1][j].isBlocker())
+                        addShootNeighbours(hex, radius-1, i-1, j);
+                    if (j + 1 < maxJ) {
                         hex.addShootNeighbours(hexagons[i - 1][j + 1]);
-                        addShootNeighbours(hex, radius-1, i-1, j+1);
+                        if (!hexagons[i - 1][j + 1].isBlocker())
+                            addShootNeighbours(hex, radius-1, i-1, j+1);
                     }
                 }
-                if (i + 1 < maxI && !hexagons[i + 1][j].isFilled()) {
+                if (i + 1 < maxI) {
                     hex.addShootNeighbours(hexagons[i + 1][j]);
-                    addShootNeighbours(hex, radius-1, i+1, j);
-                    if (j + 1 < maxJ && !hexagons[i + 1][j + 1].isFilled()) {
+                    if (!hexagons[i + 1][j].isBlocker())
+                        addShootNeighbours(hex, radius-1, i+1, j);
+                    if (j + 1 < maxJ) {
                         hex.addShootNeighbours(hexagons[i + 1][j + 1]);
-                        addShootNeighbours(hex, radius-1, i+1, j+1);
+                        if (!hexagons[i + 1][j + 1].isBlocker())
+                            addShootNeighbours(hex, radius-1, i+1, j+1);
                     }
                 }
-                if (j - 1 >= 0 && !hexagons[i][j - 1].isFilled()) {
+                if (j - 1 >= 0) {
                     hex.addShootNeighbours(hexagons[i][j - 1]);
-                    addShootNeighbours(hex, radius-1, i, j-1);
+                    if (!hexagons[i][j - 1].isBlocker())
+                        addShootNeighbours(hex, radius-1, i, j-1);
                 }
-                if (j + 1 < maxJ && !hexagons[i][j + 1].isFilled()) {
+                if (j + 1 < maxJ) {
                     hex.addShootNeighbours(hexagons[i][j + 1]);
-                    addShootNeighbours(hex, radius-1, i, j+1);
+                    if (!hexagons[i][j + 1].isBlocker())
+                        addShootNeighbours(hex, radius-1, i, j+1);
                 }
             }
         }

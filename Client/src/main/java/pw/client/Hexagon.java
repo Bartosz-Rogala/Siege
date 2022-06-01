@@ -14,6 +14,7 @@ public class Hexagon {
     private Polygon hex;
     private boolean isActive;
     private boolean isFilled;
+    private boolean isBlocker;
     private String race;
     private String type;
     private int attack;
@@ -31,6 +32,7 @@ public class Hexagon {
         this.hex = hex;
         this.isActive = false;
         this.isFilled = false;
+        this.isBlocker = false;
         this.moveNeighbours = new ArrayList<>();
         this.shootNeighbours = new ArrayList<>();
     }
@@ -67,6 +69,7 @@ public class Hexagon {
                 break;
             case "obstacle":
                 url.append("obstacle.png");
+                this.isBlocker = true;
                 break;
         }
 
@@ -103,6 +106,10 @@ public class Hexagon {
 
     public boolean isFilled() {
         return isFilled;
+    }
+
+    public boolean isBlocker() {
+        return isBlocker;
     }
 
     public void setIsActive(boolean active) {
@@ -150,6 +157,10 @@ public class Hexagon {
 
     public void setFilled(boolean filled) {
         isFilled = filled;
+    }
+
+    public void setBlocker(boolean blocker) {
+        isBlocker = blocker;
     }
 
     public String getType() {
