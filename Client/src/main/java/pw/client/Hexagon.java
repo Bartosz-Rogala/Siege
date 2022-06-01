@@ -71,6 +71,18 @@ public class Hexagon {
                 url.append("obstacle.png");
                 this.isBlocker = true;
                 break;
+            case "chest":
+                url.append("chest.png");
+                break;
+            case "openChest":
+                if (race.equals("coal")) {
+                    url.append("chestCoal.png");
+                } else if (race.equals("diamond")) {
+                    url.append("chestDiamond.png");
+                } else {
+                    url.append("chest.png");
+                }
+                break;
         }
 
         this.hex.setFill(new ImagePattern(new Image(url.toString())));
@@ -130,7 +142,8 @@ public class Hexagon {
             }
         } else {
             if (isFilled && isActive) {
-                url = url.replace(url.lastIndexOf("_selected"), url.lastIndexOf("_selected") + 9, "");
+                if (url.indexOf("_selected") != -1)
+                    url = url.replace(url.lastIndexOf("_selected"), url.lastIndexOf("_selected") + 9, "");
                 this.hex.setFill(new ImagePattern(new Image(url.toString())));
                 this.hex.setStroke(Color.rgb(77,77,77,0.33));
                 for (Hexagon hex: shootNeighbours) {

@@ -43,7 +43,9 @@ public class Game {
     public void generateArmy(Player owner, String army) {
         armyCount++;
         int x = BOARD_HEIGHT;
-        int y = armyCount > 1 ? BOARD_WIDTH - 2 : 0;
+        int y = armyCount > 1 ? BOARD_WIDTH - 3 : 1;
+        int chestPlacement = armyCount > 1 ? BOARD_WIDTH - 1: 0;
+        List<String> chestContent = new ArrayList<>();
         List<Integer> pawnPlaces = drawWithoutRepetition();
         int currentIteration = 0;
 
@@ -65,6 +67,16 @@ public class Game {
                 currentIteration++;
             }
         }
+
+        chestContent.add("diamond");
+        chestContent.add("coal");
+        chestContent.add("coal");
+        Collections.shuffle(chestContent);
+
+        for (int i = 0; i < 3; i++) {
+            hexagons[i*4][chestPlacement].setUnit(new Chest(owner, chestContent.get(i)));
+        }
+
     }
 
     public List<Integer> drawWithoutRepetition() {
@@ -73,7 +85,7 @@ public class Game {
             list.add(i);
         }
         Collections.shuffle(list);
-        return list.subList(0,6);
+        return list.subList(0,9);
     }
 
 
@@ -106,7 +118,12 @@ public class Game {
         victimHex.getUnit().attack(attackerHex.getUnit());
 
         if (victimHex.getUnit().isDead()) {
-            victimHex.clear();
+            if (victimHex.getUnit() instanceof Chest) {
+                ((Chest) victimHex.getUnit()).open();
+            } else {
+                victimHex.clear();
+            }
+
         }
     }
 
