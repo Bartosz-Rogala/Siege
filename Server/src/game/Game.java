@@ -115,6 +115,8 @@ public class Game {
         Hexagon attackerHex = hexagons[Integer.parseInt(attackerTokens[1])][Integer.parseInt(attackerTokens[2])];
         Hexagon victimHex = hexagons[Integer.parseInt(victimTokens[1])][Integer.parseInt(victimTokens[2])];
 
+
+
         victimHex.getUnit().attack(attackerHex.getUnit());
 
         if (victimHex.getUnit().isDead()) {
