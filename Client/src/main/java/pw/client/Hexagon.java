@@ -37,7 +37,7 @@ public class Hexagon {
         this.shootNeighbours = new ArrayList<>();
     }
 
-    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius, String owner) {
+    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius, String owner, int clientPort) {
         url = new StringBuilder("C:\\Users\\01168103\\Intellij Projects\\Siege\\Client\\src\\main\\resources\\client\\pawns\\");
         switch (race) {
             case "goblin":
@@ -72,7 +72,16 @@ public class Hexagon {
                 this.isBlocker = true;
                 break;
             case "chest":
-                url.append("chest.png");
+
+                if (owner.equals(clientPort + "")) {
+                    if (race.equals("coal")) {
+                        url.append("chestCoal.png");
+                    } else if (race.equals("diamond")) {
+                        url.append("chestDiamond.png");
+                    }
+                } else {
+                    url.append("chest.png");
+                }
                 break;
             case "openChest":
                 if (race.equals("coal")) {

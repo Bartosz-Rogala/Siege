@@ -18,9 +18,11 @@ public class SessionHandler extends Thread {
     private BufferedReader reader2;
     private PrintWriter writer1;
     private PrintWriter writer2;
+    private boolean endgame;
 
     public SessionHandler(Socket socket1, Socket socket2) {
         try {
+            this.endgame = false;
             this.player1 = new Player();
             this.player2 = new Player();
 
@@ -78,7 +80,9 @@ public class SessionHandler extends Thread {
 
                     switch (actionTokens[0]) {
                         case "attack":
-                            game.attack(actionTokens[1], actionTokens[2]);
+                            if (game.attack(actionTokens[1], actionTokens[2])) {
+                                endgame = true;
+                            }
                             break;
                         case "move":
                             game.move(actionTokens[1], actionTokens[2]);
@@ -90,7 +94,11 @@ public class SessionHandler extends Thread {
 
                 }
 
-                response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
+                if (endgame) {
+                    response = "endgame:" + game.getCurrentPlayer().getSocket().getPort();
+                } else {
+                    response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
+                }
 
 
                 System.out.println("response: " + response);

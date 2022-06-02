@@ -10,14 +10,14 @@ public class Board {
         this.hexagons = hexagons;
     }
 
-    public void parseMessage(String[] hexes) {
+    public void parseMessage(String[] hexes, int clientPort) {
 
         int k = 0;
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
                 String[] tokens = hexes[k].split(",");
                 if (tokens[0].equals("true")) {
-                    hexagons[i][j].populate(tokens[1], tokens[2], Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), Integer.valueOf(tokens[5]), Integer.valueOf(tokens[6]), tokens[7]);
+                    hexagons[i][j].populate(tokens[1], tokens[2], Integer.valueOf(tokens[3]), Integer.valueOf(tokens[4]), Integer.valueOf(tokens[5]), Integer.valueOf(tokens[6]), tokens[7], clientPort);
                 } else {
                     hexagons[i][j].setFilled(false);
                     hexagons[i][j].setIsActive(false);

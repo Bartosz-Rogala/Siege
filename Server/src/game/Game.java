@@ -107,7 +107,7 @@ public class Game {
 
     }
 
-    public void attack(String attacker, String victim) {
+    public boolean attack(String attacker, String victim) {
         System.out.println("attacking");
         String[] attackerTokens = attacker.split(",");
         String[] victimTokens = victim.split(",");
@@ -120,11 +120,16 @@ public class Game {
         if (victimHex.getUnit().isDead()) {
             if (victimHex.getUnit() instanceof Chest) {
                 ((Chest) victimHex.getUnit()).open();
+                if (((Chest) victimHex.getUnit()).isOpen() && victimHex.getUnit().getRace().equals("Diamond")) {
+                    return false;
+                }
             } else {
                 victimHex.clear();
             }
 
         }
+
+        return true;
     }
 
     public void move(String from, String to) {

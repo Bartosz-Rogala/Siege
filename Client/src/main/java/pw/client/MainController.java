@@ -70,10 +70,14 @@ public class MainController extends Thread implements Initializable {
                 System.out.println("reader: " + msg);
                 String[] tokens = msg.split(":");
 
-                String[] hexes = tokens[1].split(";");
-                currentPort = tokens[0];
-                board.deactivateAll();
-                board.parseMessage(hexes);
+                if (tokens[0].equals("endgame")) {
+                    endgame();
+                } else {
+                    String[] hexes = tokens[1].split(";");
+                    currentPort = tokens[0];
+                    board.deactivateAll();
+                    board.parseMessage(hexes, socket.getLocalPort());
+                }
             }
 
         } catch (Exception e) {
@@ -146,6 +150,9 @@ public class MainController extends Thread implements Initializable {
 
     }
 
+    private void endgame() {
+        System.out.println();
+    }
 
 
 
