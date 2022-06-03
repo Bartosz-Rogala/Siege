@@ -2,6 +2,8 @@ package pw.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -16,6 +18,17 @@ import java.util.ResourceBundle;
 public class MainController extends Thread implements Initializable {
 
     @FXML public VBox vbox01;
+    @FXML public TextField topTextField;
+
+    @FXML public Label statLabelName;
+    @FXML public Label statLabelFaction;
+    @FXML public Label statLabelClass;
+    @FXML public Label statLabelType;
+    @FXML public Label statLabelHealth;
+    @FXML public Label statLabelMove;
+    @FXML public Label statLabelAttDmg;
+    @FXML public Label statLabelAttRng;
+
 
     BufferedReader reader;
     PrintWriter writer;
@@ -78,6 +91,7 @@ public class MainController extends Thread implements Initializable {
                     currentPort = tokens[0];
                     board.deactivateAll();
                     board.parseMessage(hexes, socket.getLocalPort());
+                    displayCurrentPlayer();
                 }
             }
 
@@ -138,9 +152,9 @@ public class MainController extends Thread implements Initializable {
                 }
             } else if (board.isFilledIn(source)) {
                 board.activate(currentPort, source);
+                displayCurrentUnitStatistics();
             }
         }
-
     }
 
 
@@ -156,5 +170,23 @@ public class MainController extends Thread implements Initializable {
     }
 
 
+    public void displayCurrentPlayer() {
 
+       String message = "Welcome " + StartController.username + "!";
+       topTextField.setText(message);
+    }
+
+    public void displayCurrentUnitStatistics() {
+
+        if (board.isAnyHexActive()) {
+            statLabelName.setText("");
+            statLabelFaction.setText("");
+            statLabelClass.setText("");
+            statLabelType.setText("");
+            statLabelHealth.setText("");
+            statLabelMove.setText("");
+            statLabelAttDmg.setText("");
+            statLabelAttRng.setText("");
+        }
+    }
 }

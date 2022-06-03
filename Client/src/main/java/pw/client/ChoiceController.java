@@ -69,11 +69,11 @@ public class ChoiceController {
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));
             stage.setTitle(startController.getUsername() + "");
-            stage.setFullScreen(true);
+//            stage.setFullScreen(true);
             stage.setOnCloseRequest(event -> {
                 System.exit(0);
             });
-            stage.setResizable(true);
+//            stage.setResizable(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

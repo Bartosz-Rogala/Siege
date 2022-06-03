@@ -38,7 +38,7 @@ public class Hexagon {
     }
 
     public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius, String owner, int clientPort) {
-        url = new StringBuilder("C:\\Users\\01168103\\Intellij Projects\\Siege\\Client\\src\\main\\resources\\client\\pawns\\");
+        url = new StringBuilder("D:\\Dokumenty\\nowyRozdzial\\postgraduate\\PRK\\Siege\\Client\\src\\main\\resources\\client\\pawns\\");
         switch (race) {
             case "goblin":
                 url.append("goblin\\");
