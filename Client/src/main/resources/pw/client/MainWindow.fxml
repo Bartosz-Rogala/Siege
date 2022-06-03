@@ -14,9 +14,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainWindow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -1977,31 +1976,23 @@
    <right>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="chatButton" layoutX="135.0" layoutY="836.0" mnemonicParsing="false" text="Send" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="20.0" />
-            <Label fx:id="chatLabel" alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" text="Chat" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="chatTextArea" layoutX="7.0" layoutY="333.0" prefHeight="200.0" prefWidth="200.0" promptText="some chat messages (sample)" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-            <TextField fx:id="chatTextField" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="839.0" promptText="Write something to your opponent" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="chatLabel" alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" styleClass="labelTop" stylesheets="@styles.css" text="Chat" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="chatButton" layoutX="135.0" layoutY="836.0" minWidth="100.0" mnemonicParsing="false" styleClass="chatButton" stylesheets="@styles.css" text="Send" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="0.0" />
+            <TextArea fx:id="chatTextArea" editable="false" layoutX="7.0" layoutY="333.0" minWidth="250.0" prefWidth="300.0" styleClass="chatTextArea" stylesheets="@styles.css" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+            <TextField fx:id="chatTextField" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="839.0" styleClass="chatTextField" stylesheets="@styles.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+            <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
          </BorderPane.margin>
       </AnchorPane>
    </right>
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="topTextField" alignment="TOP_CENTER" editable="false" text="&quot;Player &quot;+name+&quot; turn&quot; (sample text)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </TextField>
+            <TextField fx:id="topTextField" alignment="TOP_CENTER" editable="false" prefHeight="46.0" prefWidth="1976.0" styleClass="textFieldTop" stylesheets="@styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -2014,15 +2005,11 @@
    <left>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="statLabelTop" alignment="CENTER" layoutX="60.0" layoutY="34.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" text="Unit statistics" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <GridPane maxHeight="300.0" minHeight="300.0" prefHeight="300.0" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+            <Label alignment="CENTER" layoutX="60.0" layoutY="34.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" styleClass="labelTop" stylesheets="@styles.css" text="Unit statistics" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <GridPane fx:id="statGridPane" minWidth="250.0" prefWidth="250.0" styleClass="statPanel" stylesheets="@styles.css" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="89.60000610351562" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.79998779296875" minWidth="10.0" prefWidth="110.39999389648438" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.00002899169922" minWidth="10.0" prefWidth="112.00002899169922" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.79998779296875" minWidth="10.0" prefWidth="88.79997100830079" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -2035,109 +2022,85 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label fx:id="statLabelName" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Name">
+                  <Label fx:id="statLabelName" alignment="TOP_LEFT" styleClass="statLabelLeft" stylesheets="@styles.css" text="Name">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelFaction" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Faction" GridPane.rowIndex="1">
+                  <Label fx:id="statLabelFaction" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Faction" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelClass" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Class" GridPane.rowIndex="2">
+                  <Label fx:id="statLabelClass" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Class" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelType" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Type" GridPane.rowIndex="3">
+                  <Label fx:id="statLabelType" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Type" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelHealth" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text=" Health points" GridPane.rowIndex="4">
+                  <Label fx:id="statLabelHealth" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Health points" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelMove" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Move points" GridPane.rowIndex="5">
+                  <Label fx:id="statLabelMove" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Move points" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelAttDmg" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Attack damage" GridPane.rowIndex="6">
+                  <Label fx:id="statLabelAttDmg" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Attack damage" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelAttRng" alignment="TOP_LEFT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="Attack range" GridPane.rowIndex="7">
+                  <Label fx:id="statLabelAttRng" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Attack range" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelNameDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="janek" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                  <Label fx:id="statLabelNameDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="janek" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelFactionDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="human" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
+                  <Label fx:id="statLabelFactionDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="human" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelClassDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="warrior" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="2">
+                  <Label fx:id="statLabelClassDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="warrior" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelTypeDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="melee dps" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="3">
+                  <Label fx:id="statLabelTypeDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="melee dps" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelHealthDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="65" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="4">
+                  <Label fx:id="statLabelHealthDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="65" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelMoveDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="2" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="5">
+                  <Label fx:id="statLabelMoveDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="2" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelAttDmgDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="30-40" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="6">
+                  <Label fx:id="statLabelAttDmgDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="30-40" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
-                  <Label fx:id="statLabelAttRngDisplay" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" maxHeight="20.0" maxWidth="100.0" minHeight="20.0" minWidth="100.0" prefHeight="20.0" prefWidth="100.0" text="2" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="7">
+                  <Label fx:id="statLabelAttRngDisplay" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="2" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
                   </Label>
                </children>
             </GridPane>

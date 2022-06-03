@@ -29,6 +29,7 @@ public class MainController extends Thread implements Initializable {
     int maxJ = 13;
     String currentPort;
 
+
     public MainController(ChoiceController choiceController, String army) {
         this.choiceController = choiceController;
         this.army = army;
