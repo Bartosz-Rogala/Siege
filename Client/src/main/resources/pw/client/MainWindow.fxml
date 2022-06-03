@@ -16,13 +16,12 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="300.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
 
-                  <VBox fx:id="vbox01" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="-31.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <VBox fx:id="vbox01" alignment="CENTER" spacing="-31.0">
                <HBox fx:id="hbox01" AnchorPane.leftAnchor="50.0">
                   <children>
                      <Polygon fx:id="hex0101" fill="TRANSPARENT" onMouseClicked="#hexOnClicked" smooth="false" stroke="#4d4d4d54" strokeWidth="2.0">
@@ -30,19 +29,19 @@
                            <Double fx:value="-50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="60.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="-30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="-60.0" />
 
-                                 <Double fx:value="-50.0" />
+                                       <Double fx:value="-50.0" />
                            <Double fx:value="-30.0" />
                         </points>
                      </Polygon>
@@ -462,19 +461,19 @@
                            <Double fx:value="-50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="60.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="-30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="-60.0" />
 
-                                 <Double fx:value="-50.0" />
+                                       <Double fx:value="-50.0" />
                            <Double fx:value="-30.0" />
                         </points>
                      </Polygon>
@@ -894,19 +893,19 @@
                            <Double fx:value="-50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="60.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="-30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="-60.0" />
 
-                                 <Double fx:value="-50.0" />
+                                       <Double fx:value="-50.0" />
                            <Double fx:value="-30.0" />
                         </points>
                      </Polygon>
@@ -1326,19 +1325,19 @@
                            <Double fx:value="-50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="60.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="-30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="-60.0" />
 
-                                 <Double fx:value="-50.0" />
+                                       <Double fx:value="-50.0" />
                            <Double fx:value="-30.0" />
                         </points>
                      </Polygon>
@@ -1758,19 +1757,19 @@
                            <Double fx:value="-50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="60.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="30.0" />
 
-                                 <Double fx:value="50.0" />
+                                       <Double fx:value="50.0" />
                            <Double fx:value="-30.0" />
 
-                                 <Double fx:value="0.0" />
+                                       <Double fx:value="0.0" />
                            <Double fx:value="-60.0" />
 
-                                 <Double fx:value="-50.0" />
+                                       <Double fx:value="-50.0" />
                            <Double fx:value="-30.0" />
                         </points>
                      </Polygon>
@@ -1976,7 +1975,7 @@
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane prefWidth="300.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="chatButton" layoutX="135.0" layoutY="836.0" mnemonicParsing="false" text="Send" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="20.0" />
             <Label fx:id="chatLabel" alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" text="Chat" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -2013,7 +2012,7 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="statLabelTop" alignment="CENTER" layoutX="60.0" layoutY="34.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" text="Unit statistics" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <font>

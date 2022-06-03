@@ -15,7 +15,7 @@ public class App extends Application {
 
         primaryStage.setTitle("Siege!");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 
