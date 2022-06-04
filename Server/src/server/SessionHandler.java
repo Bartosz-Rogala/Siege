@@ -80,7 +80,7 @@ public class SessionHandler extends Thread {
 
                     switch (actionTokens[0]) {
                         case "attack":
-                            if (game.attack(actionTokens[1], actionTokens[2])) {
+                            if (!game.attackAndContinue(actionTokens[1], actionTokens[2])) {
                                 endgame = true;
                             }
                             break;

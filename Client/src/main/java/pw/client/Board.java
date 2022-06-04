@@ -2,6 +2,8 @@ package pw.client;
 
 import javafx.scene.shape.Polygon;
 
+import java.io.IOException;
+
 public class Board {
 
     Hexagon[][] hexagons;
@@ -10,7 +12,7 @@ public class Board {
         this.hexagons = hexagons;
     }
 
-    public void parseMessage(String[] hexes, int clientPort) {
+    public void parseMessage(String[] hexes, int clientPort) throws IOException {
 
         int k = 0;
         for (int i = 0; i < hexagons.length; i++) {

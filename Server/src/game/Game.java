@@ -16,6 +16,8 @@ public class Game {
     private int armyCount = 0;
     private Player player1;
     private Player player2;
+    private int player1Army;
+    private int player2Army;
     private Player currentPlayer;
 
     private Player nullPlayer;
@@ -44,7 +46,15 @@ public class Game {
         armyCount++;
         int x = BOARD_HEIGHT;
         int y = armyCount > 1 ? BOARD_WIDTH - 3 : 1;
-        int chestPlacement = armyCount > 1 ? BOARD_WIDTH - 1: 0;
+        int chestPlacement = 0;
+
+        if (armyCount == 1) {
+            chestPlacement = 0;
+            player1Army = 9;
+        } else  if (armyCount == 2) {
+            chestPlacement = BOARD_WIDTH - 1;
+            player2Army = 9;
+        }
         List<String> chestContent = new ArrayList<>();
         List<Integer> pawnPlaces = drawWithoutRepetition();
         int currentIteration = 0;
@@ -107,7 +117,7 @@ public class Game {
 
     }
 
-    public boolean attack(String attacker, String victim) {
+    public boolean attackAndContinue(String attacker, String victim) {
         System.out.println("attacking");
         String[] attackerTokens = attacker.split(",");
         String[] victimTokens = victim.split(",");
@@ -122,13 +132,22 @@ public class Game {
         if (victimHex.getUnit().isDead()) {
             if (victimHex.getUnit() instanceof Chest) {
                 ((Chest) victimHex.getUnit()).open();
-                if (((Chest) victimHex.getUnit()).isOpen() && victimHex.getUnit().getRace().equals("Diamond")) {
+                if (((Chest) victimHex.getUnit()).isOpen() && victimHex.getUnit().getRace().equals("diamond")) {
                     return false;
                 }
             } else {
-                victimHex.clear();
-            }
+                if (victimHex.getUnit().getOwner().equals(player1)) {
+                    player1Army--;
+                } else if (victimHex.getUnit().getOwner().equals(player2)) {
+                    player2Army--;
+                }
 
+                victimHex.clear();
+
+                if (player1Army == 0 || player2Army == 0) {
+                    return false;
+                }
+            }
         }
 
         return true;

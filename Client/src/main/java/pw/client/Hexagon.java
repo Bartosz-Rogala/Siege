@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Hexagon {
@@ -37,8 +39,8 @@ public class Hexagon {
         this.shootNeighbours = new ArrayList<>();
     }
 
-    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius, String owner, int clientPort) {
-        url = new StringBuilder("D:\\Dokumenty\\nowyRozdzial\\postgraduate\\PRK\\Siege\\Client\\src\\main\\resources\\client\\pawns\\");
+    public void populate(String type, String race, int attack, int healthPoints, int moveRadius, int shootRadius, String owner, int clientPort) throws IOException {
+        url = new StringBuilder(System.getProperty("user.dir") + "\\src\\main\\resources\\client\\pawns\\");
         switch (race) {
             case "goblin":
                 url.append("goblin\\");
