@@ -1,0 +1,53 @@
+.mainWindow {
+	-fx-background-color: #E8E4C9;
+}
+
+.textFieldTop {
+	-fx-background-color: #CCAA00;
+	-fx-font-size: 22px;
+	-fx-font-weight: 700;
+}
+
+.labelTop {
+	-fx-background-color: #CCAA00;
+	-fx-font-size: 18px;
+	-fx-font-weight: 700;
+}
+
+.statPanel {
+	-fx-background-color: #5391CF;
+}
+
+.statLabelLeft {
+	-fx-background-color: #5391CF;
+	-fx-font-size: 14px;
+	-fx-font-weight: 400;
+	-fx-font-style: italic;
+}
+
+.statLabelRight {
+	-fx-background-color: #5391CF;
+	-fx-font-size: 14px;
+	-fx-font-weight: 700;
+
+}
+
+.chatTextArea .content {
+	-fx-background-color: #5391CF;
+}
+
+.chatTextField {
+	-fx-background-color: #CCAA00;
+	-fx-font-size: 16px;
+	-fx-font-weight: 400;
+}
+
+.chatButton {
+	-fx-background-color: #CCAA00;
+	-fx-font-size: 14px;
+}
+
+.board {
+    -fx-background-image:url('../../client/field/greenField.jpg');
+}
+

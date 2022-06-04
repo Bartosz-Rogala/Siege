@@ -63,47 +63,55 @@ public class SessionHandler extends Thread {
         try {
             String msg;
             while ((msg = reader.readLine()) != null) {
-
                 String response;
-
                 String[] tokens = msg.split(":");
 
-                if (tokens[0].equals("first")) {
-                    game.generateArmy(player, tokens[1]);
 
+                if (tokens[0].equals("chat")) {
+                    w1.println(msg);
+                    w2.println(msg);
 
                 } else {
-                    player.setPlayerName(tokens[0]);
-                    game.countTurn(player.getPlayerId());
 
-                    String[] actionTokens = tokens[1].split("/");
 
-                    switch (actionTokens[0]) {
-                        case "attack":
-                            if (!game.attackAndContinue(actionTokens[1], actionTokens[2])) {
-                                endgame = true;
-                            }
-                            break;
-                        case "move":
-                            game.move(actionTokens[1], actionTokens[2]);
-                            break;
-                        case "build":
-                            game.build(actionTokens[1], actionTokens[2]);
-                            break;
+
+                    if (tokens[0].equals("first")) {
+                        game.generateArmy(player, tokens[1]);
+
+
+                    } else {
+                        player.setPlayerName(tokens[0]);
+                        game.countTurn(player.getPlayerId());
+
+                        String[] actionTokens = tokens[1].split("/");
+
+                        switch (actionTokens[0]) {
+                            case "attack":
+                                if (!game.attackAndContinue(actionTokens[1], actionTokens[2])) {
+                                    endgame = true;
+                                }
+                                break;
+                            case "move":
+                                game.move(actionTokens[1], actionTokens[2]);
+                                break;
+                            case "build":
+                                game.build(actionTokens[1], actionTokens[2]);
+                                break;
+                        }
+
                     }
 
+                    if (endgame) {
+                        response = "endgame:" + game.getCurrentPlayer().getSocket().getPort();
+                    } else {
+                        response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
+                    }
+
+
+                    System.out.println("response: " + response);
+                    w1.println(response);
+                    w2.println(response);
                 }
-
-                if (endgame) {
-                    response = "endgame:" + game.getCurrentPlayer().getSocket().getPort();
-                } else {
-                    response = game.getCurrentPlayer().getSocket().getPort() + ":" + game.toString();
-                }
-
-
-                System.out.println("response: " + response);
-                w1.println(response);
-                w2.println(response);
 
             }
         } catch (Exception e) {

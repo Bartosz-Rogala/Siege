@@ -2,7 +2,9 @@ package pw.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +30,11 @@ public class MainController extends Thread implements Initializable {
     @FXML public Label statLabelMove;
     @FXML public Label statLabelAttDmg;
     @FXML public Label statLabelAttRng;
+
+
+    //chat
+    @FXML public TextField chatTextField;
+    @FXML public TextArea chatTextArea;
 
 
     BufferedReader reader;
@@ -86,6 +93,18 @@ public class MainController extends Thread implements Initializable {
 
                 if (tokens[0].equals("endgame")) {
                     endgame();
+                } else if (tokens[0].equals("chat")) {
+                    String[] msgTokens = tokens[2].split(" ");
+                    String cmd = msgTokens[0];
+                    System.out.println(cmd);
+                    StringBuilder fulmsg = new StringBuilder();
+                    for(int i = 1; i < msgTokens.length; i++) {
+                        fulmsg.append(msgTokens[i]);
+                    }
+                    if (cmd.equalsIgnoreCase(StartController.username + ":")) {
+                        continue;
+                    }
+                    chatTextArea.appendText( tokens[1] + ": " + fulmsg + "\n");
                 } else {
                     String[] hexes = tokens[1].split(";");
                     currentPort = tokens[0];
@@ -134,6 +153,12 @@ public class MainController extends Thread implements Initializable {
             }
         }
 
+    }
+
+    public void sendChatMessage(MouseEvent event) {
+        String msg = chatTextField.getText();
+        writer.println("chat:" + StartController.username + ": " + msg);
+        chatTextField.setText("");
     }
 
     public void hexOnRightClicked(MouseEvent event) {
