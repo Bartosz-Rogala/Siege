@@ -155,10 +155,16 @@ public class MainController extends Thread implements Initializable {
 
     }
 
-    public void sendChatMessage(MouseEvent event) {
+    public void sendChatMessage() {
         String msg = chatTextField.getText();
         writer.println("chat:" + StartController.username + ": " + msg);
         chatTextField.setText("");
+    }
+
+    public void moreInfo(MouseEvent event) {
+        Polygon source = (Polygon) event.getSource();
+
+        statLabelHealth.setText(board.getInfo(source) + "");
     }
 
     public void hexOnRightClicked(MouseEvent event) {

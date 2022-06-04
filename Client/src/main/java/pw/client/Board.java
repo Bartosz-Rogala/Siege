@@ -126,6 +126,17 @@ public class Board {
         return false;
     }
 
+    public int getInfo (Polygon hex) {
+        for (int i = 0; i < hexagons.length; i++) {
+            for (int j = 0; j < hexagons[i].length; j++) {
+                if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
+                    return hexagons[i][j].getHealthPoints();
+                }
+            }
+        }
+        return -1;
+    }
+
     public boolean isBlocker (Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
