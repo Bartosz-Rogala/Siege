@@ -211,8 +211,12 @@ public class MainController extends Thread implements Initializable {
 
 
     public void displayCurrentPlayer() {
-
-       String message = "Welcome " + StartController.username + "!";
-       topTextField.setText(message);
+        if (currentPort.equals("" + socket.getLocalPort())) {
+            String message = "Welcome " + StartController.username + "! Now is your turn.";
+            topTextField.setText(message);
+        } else {
+            String message = "Welcome " + StartController.username + "! Now is your opponent turn.";
+            topTextField.setText(message);
+        }
     }
 }
