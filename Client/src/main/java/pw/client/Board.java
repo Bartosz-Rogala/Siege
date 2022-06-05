@@ -35,7 +35,7 @@ public class Board {
                 String[] tokens = hexes[l].split(",");
                 if (tokens[0].equals("true")) {
                     addMoveNeighbours(hexagons[i][j], hexagons[i][j].getMoveRadius(), i, j);
-                    addShootNeighbours(hexagons[i][j], hexagons[i][j].getShootRadius(), i, j);
+                    addShootNeighbours(hexagons[i][j], hexagons[i][j].getAttackRange(), i, j);
                 }
                 l++;
             }
@@ -126,15 +126,20 @@ public class Board {
         return false;
     }
 
-    public int getInfo (Polygon hex) {
+    public String[] getUnitStats(Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
                 if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
-                    return hexagons[i][j].getHealthPoints();
+
+                    String[] unitStats = {hexagons[i][j].getUnitName(), hexagons[i][j].getUnitRace(), hexagons[i][j].getUnitClass(),
+                            hexagons[i][j].getUnitType(), String.valueOf(hexagons[i][j].getHealthPoints()),
+                            String.valueOf(hexagons[i][j].getMoveRadius()), String.valueOf(hexagons[i][j].getAttackDamage()),
+                            String.valueOf(hexagons[i][j].getAttackRange())};
+                    return unitStats;
                 }
             }
         }
-        return -1;
+        return null;
     }
 
     public boolean isBlocker (Polygon hex) {

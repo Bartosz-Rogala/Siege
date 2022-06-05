@@ -2,7 +2,6 @@ package pw.client;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,14 +21,14 @@ public class MainController extends Thread implements Initializable {
     @FXML public VBox vbox01;
     @FXML public TextField topTextField;
 
-    @FXML public Label statLabelName;
-    @FXML public Label statLabelFaction;
-    @FXML public Label statLabelClass;
-    @FXML public Label statLabelType;
-    @FXML public Label statLabelHealth;
-    @FXML public Label statLabelMove;
-    @FXML public Label statLabelAttDmg;
-    @FXML public Label statLabelAttRng;
+    @FXML public Label statUnitName;
+    @FXML public Label statUnitRace;
+    @FXML public Label statUnitClass;
+    @FXML public Label statUnitType;
+    @FXML public Label statHealthPoints;
+    @FXML public Label statMoveRadius;
+    @FXML public Label statAttackDamage;
+    @FXML public Label statAttackRange;
 
 
     //chat
@@ -161,10 +160,29 @@ public class MainController extends Thread implements Initializable {
         chatTextField.setText("");
     }
 
-    public void moreInfo(MouseEvent event) {
+    public void displayUnitStats(MouseEvent event) {
         Polygon source = (Polygon) event.getSource();
 
-        statLabelHealth.setText(board.getInfo(source) + "");
+        String[] stats = board.getUnitStats(source);
+
+        String unitName = stats[0];
+        String unitRace = stats[1];
+        String unitClass = stats[2];
+        String unitType = stats[3];
+        String healthPoints = stats[4];
+        String moveRadius = stats[5];
+        String attackDamage = stats[6];
+        String attackRange = stats[7];
+
+        statUnitName.setText(unitName);
+        statUnitRace.setText(unitRace);
+        statUnitClass.setText(unitClass);
+        statUnitType.setText(unitType);
+        statHealthPoints.setText(healthPoints);
+        statMoveRadius.setText(moveRadius);
+        statAttackDamage.setText(attackDamage);
+        statAttackRange.setText(attackRange);
+        
     }
 
     public void hexOnRightClicked(MouseEvent event) {
@@ -183,7 +201,6 @@ public class MainController extends Thread implements Initializable {
                 }
             } else if (board.isFilledIn(source)) {
                 board.activate(currentPort, source);
-                displayCurrentUnitStatistics();
             }
         }
     }
@@ -205,19 +222,5 @@ public class MainController extends Thread implements Initializable {
 
        String message = "Welcome " + StartController.username + "!";
        topTextField.setText(message);
-    }
-
-    public void displayCurrentUnitStatistics() {
-
-        if (board.isAnyHexActive()) {
-            statLabelName.setText("");
-            statLabelFaction.setText("");
-            statLabelClass.setText("");
-            statLabelType.setText("");
-            statLabelHealth.setText("");
-            statLabelMove.setText("");
-            statLabelAttDmg.setText("");
-            statLabelAttRng.setText("");
-        }
     }
 }

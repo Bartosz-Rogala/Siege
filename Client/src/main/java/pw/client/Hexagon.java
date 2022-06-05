@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
-import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,12 +16,14 @@ public class Hexagon {
     private boolean isActive;
     private boolean isFilled;
     private boolean isBlocker;
-    private String race;
-    private String type;
-    private int attack;
+    private String unitName;
+    private String unitRace;
+    private String unitClass;
+    private String unitType;
+    private int attackDamage;
     private int healthPoints;
     private int moveRadius;
-    private int shootRadius;
+    private int attackRange;
     private ArrayList<Hexagon> moveNeighbours;
     private ArrayList<Hexagon> shootNeighbours;
     StringBuilder url;
@@ -98,12 +99,12 @@ public class Hexagon {
 
         this.hex.setFill(new ImagePattern(new Image(url.toString())));
         this.isFilled = true;
-        this.attack = attack;
+        this.attackDamage = attack;
         this.healthPoints = healthPoints;
-        this.type = type;
-        this.race = race;
+        this.unitType = type;
+        this.unitRace = race;
         this.moveRadius = moveRadius;
-        this.shootRadius = shootRadius;
+        this.attackRange = shootRadius;
         this.owner = owner;
     }
 
@@ -188,15 +189,15 @@ public class Hexagon {
     }
 
     public String getType() {
-        return type;
+        return unitType;
     }
 
     public String getRace() {
-        return race;
+        return unitRace;
     }
 
-    public int getAttack() {
-        return attack;
+    public int getAttackDamage() {
+        return attackDamage;
     }
 
     public int getHealthPoints() {
@@ -207,18 +208,34 @@ public class Hexagon {
         return moveRadius;
     }
 
-    public int getShootRadius() {
-        return shootRadius;
+    public int getAttackRange() {
+        return attackRange;
     }
 
     public String getOwner() {
         return owner;
     }
 
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public String getUnitRace() {
+        return unitRace;
+    }
+
+    public String getUnitClass() {
+        return unitClass;
+    }
+
+    public String getUnitType() {
+        return unitType;
+    }
+
     @Override
     public String toString() {
         if (isFilled) {
-            return isFilled + "," + i + "," + j + "," + type + "," + race + "," + attack + "," + healthPoints + "," + moveRadius + "," + shootRadius + "," + owner;
+            return isFilled + "," + i + "," + j + "," + unitType + "," + unitRace + "," + attackDamage + "," + healthPoints + "," + moveRadius + "," + attackRange + "," + owner;
         } else {
             return isFilled + "," + i + "," + j;
         }

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainWindow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainWindow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane styleClass="board" BorderPane.alignment="CENTER">
          <children>
@@ -2013,82 +2022,82 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label fx:id="statLabelNameDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" stylesheets="@styles.css" text="Name">
+                  <Label fx:id="statLabelName" alignment="TOP_LEFT" styleClass="statLabelLeft" stylesheets="@styles.css" text="Name">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelFactionDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Faction" GridPane.rowIndex="1">
+                  <Label fx:id="statLabelRace" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Faction" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelClassDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Class" GridPane.rowIndex="2">
+                  <Label fx:id="statLabelClass" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Class" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelTypeDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Type" GridPane.rowIndex="3">
+                  <Label fx:id="statLabelType" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Type" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelHealthDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Health points" GridPane.rowIndex="4">
+                  <Label fx:id="statLabelHealthPoints" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Health points" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelMoveDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Move points" GridPane.rowIndex="5">
+                  <Label fx:id="statLabelMoveRadius" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Move points" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelAttDmgDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Attack damage" GridPane.rowIndex="6">
+                  <Label fx:id="statLabelAttackDamage" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Attack damage" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelAttRngDisplay" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Attack range" GridPane.rowIndex="7">
+                  <Label fx:id="statLabelAttackRange" alignment="TOP_LEFT" styleClass="statLabelLeft" text="Attack range" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelName" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="janek" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER">
+                  <Label fx:id="statUnitName" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelFaction" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="human" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label fx:id="statUnitRace" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelClass" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="warrior" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Label fx:id="statUnitClass" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelType" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="melee dps" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Label fx:id="statUnitType" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelHealth" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="65" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Label fx:id="statHealthPoints" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelMove" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="2" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <Label fx:id="statMoveRadius" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelAttDmg" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="30-40" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <Label fx:id="statAttackDamage" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statLabelAttRng" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="2" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                  <Label fx:id="statAttackRange" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
