@@ -160,24 +160,16 @@ public class MainController extends Thread implements Initializable {
         chatTextField.setText("");
     }
 
-    public void displayUnitStats(MouseEvent event) {
+    public void moreInfo(MouseEvent event) {
         Polygon source = (Polygon) event.getSource();
 
         String[] stats = board.getUnitStats(source);
 
-        String unitName = stats[0];
-        String unitRace = stats[1];
-        String unitClass = stats[2];
-        String unitType = stats[3];
-        String healthPoints = stats[4];
-        String moveRadius = stats[5];
-        String attackDamage = stats[6];
-        String attackRange = stats[7];
+        String healthPoints = stats[0];
+        String moveRadius = stats[1];
+        String attackDamage = stats[2];
+        String attackRange = stats[3];
 
-        statUnitName.setText(unitName);
-        statUnitRace.setText(unitRace);
-        statUnitClass.setText(unitClass);
-        statUnitType.setText(unitType);
         statHealthPoints.setText(healthPoints);
         statMoveRadius.setText(moveRadius);
         statAttackDamage.setText(attackDamage);

@@ -131,8 +131,7 @@ public class Board {
             for (int j = 0; j < hexagons[i].length; j++) {
                 if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
 
-                    String[] unitStats = {hexagons[i][j].getUnitName(), hexagons[i][j].getUnitRace(), hexagons[i][j].getUnitClass(),
-                            hexagons[i][j].getUnitType(), String.valueOf(hexagons[i][j].getHealthPoints()),
+                    String[] unitStats = {String.valueOf(hexagons[i][j].getHealthPoints()),
                             String.valueOf(hexagons[i][j].getMoveRadius()), String.valueOf(hexagons[i][j].getAttackDamage()),
                             String.valueOf(hexagons[i][j].getAttackRange())};
                     return unitStats;
