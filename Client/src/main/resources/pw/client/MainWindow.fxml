@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainWindow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="mainWindow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane styleClass="board" BorderPane.alignment="CENTER">
          <children>
@@ -1969,8 +1979,11 @@
          <children>
             <Label fx:id="chatLabel" alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" styleClass="labelTop" stylesheets="@styles.css" text="Chat" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Button fx:id="chatButton" layoutX="135.0" layoutY="836.0" minWidth="100.0" mnemonicParsing="false" onMouseClicked="#sendChatMessage" styleClass="chatButton" stylesheets="@styles.css" text="Send" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="0.0" />
-            <TextArea fx:id="chatTextArea" editable="false" layoutX="7.0" layoutY="333.0" minWidth="250.0" prefWidth="300.0" styleClass="chatTextArea" stylesheets="@styles.css" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-            <TextField fx:id="chatTextField" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="839.0" styleClass="chatTextField" stylesheets="@styles.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <TextArea fx:id="chatTextArea" layoutX="7.0" layoutY="333.0" minWidth="250.0" prefWidth="300.0" styleClass="chatTextArea" stylesheets="@styles.css" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
+            <TextField fx:id="chatTextField" alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="839.0" promptText="write something to your opponent" styleClass="chatTextField" stylesheets="@styles.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -1999,8 +2012,8 @@
             <Label alignment="CENTER" layoutX="60.0" layoutY="34.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" styleClass="labelTop" stylesheets="@styles.css" text="Unit statistics" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <GridPane fx:id="statGridPane" minWidth="250.0" prefWidth="250.0" styleClass="statPanel" stylesheets="@styles.css" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.00002899169922" minWidth="10.0" prefWidth="112.00002899169922" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.79998779296875" minWidth="10.0" prefWidth="88.79997100830079" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0000198364258" minWidth="10.0" prefWidth="168.0000198364258" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.79998779296875" minWidth="10.0" prefWidth="65.5999801635742" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -2029,25 +2042,37 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="statHealthPoints" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                  <Label fx:id="statHealthPoints" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" text="60" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
                   </Label>
                   <Label fx:id="statMoveRadius" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
                   </Label>
                   <Label fx:id="statAttackDamage" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
                   </Label>
                   <Label fx:id="statAttackRange" alignment="CENTER" contentDisplay="TOP" styleClass="statLabelRight" stylesheets="@styles.css" textAlignment="JUSTIFY" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
                   </Label>
                </children>
             </GridPane>
