@@ -1,7 +1,11 @@
 package pw.client;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -10,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
@@ -91,7 +96,7 @@ public class MainController extends Thread implements Initializable {
                 String[] tokens = msg.split(":");
 
                 if (tokens[0].equals("endgame")) {
-                    endgame();
+                    endgame(tokens[1]);
                 } else if (tokens[0].equals("chat")) {
                     String[] msgTokens = tokens[2].split(" ");
                     String cmd = msgTokens[0];
@@ -205,8 +210,27 @@ public class MainController extends Thread implements Initializable {
 
     }
 
-    private void endgame() {
-        System.out.println();
+    private void endgame(String winner) {
+        System.out.println("the game has ended");
+
+        Platform.runLater(() -> {
+            try {
+                Stage stage = (Stage) vbox01.getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("EndWindow.fxml"));
+                EndController endController = new EndController(winner, socket.getLocalPort() + "");
+                fxmlLoader.setController(endController);
+                Parent root = fxmlLoader.load();
+                stage.setScene(new Scene(root));
+                stage.setTitle(choiceController.startController.getUsername() + "");
+
+                stage.setOnCloseRequest(event -> {
+                    System.exit(0);
+                });
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 
