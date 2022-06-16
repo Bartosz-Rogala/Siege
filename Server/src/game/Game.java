@@ -1,27 +1,23 @@
 package game;
 
 import game.objects.*;
-
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import java.util.*;
 import static game.Properties.BOARD_HEIGHT;
 import static game.Properties.BOARD_WIDTH;
 import static game.Properties.MOVES_IN_A_ROUND;
 
 public class Game {
     Hexagon[][] hexagons;
+    private Map<Class<? extends Unit>, Integer> unitDeployMap = new HashMap<>();
     private int armyCount = 0;
-    private Player player1;
-    private Player player2;
     private int player1Army;
     private int player2Army;
-    private Player currentPlayer;
-
-    private Player nullPlayer;
     private int movesLeftInRound;
+    private Player player1;
+    private Player player2;
+    private Player currentPlayer;
+    private Player nullPlayer;
 
     public Game(Player player1, Player player2) {
         this.player1 = player1;
@@ -31,7 +27,31 @@ public class Game {
         this.currentPlayer = player1;
         this.movesLeftInRound = MOVES_IN_A_ROUND;
         this.hexagons = new Hexagon[BOARD_HEIGHT][BOARD_WIDTH];
+        this.setUnitDeployBalance();
         initializeHexagons();
+    }
+
+    private void setUnitDeployBalance() {
+        unitDeployMap.put(MeleeTank.class, 2);
+        unitDeployMap.put(MeleeDps.class, 3);
+        unitDeployMap.put(RangedDps.class, 3);
+        unitDeployMap.put(BuilderDps.class, 1);
+    }
+
+    private void createUnitType (Player owner, String army, int i, int j, Map.Entry<Class<? extends Unit>, Integer> unitStartAmount ) {
+        if (unitStartAmount.getKey() == MeleeTank.class) {
+            hexagons[i][j].setUnit(new MeleeTank(owner, army));
+            unitDeployMap.put(MeleeTank.class, unitDeployMap.get(MeleeTank.class)-1);
+        } else if (unitStartAmount.getKey() == RangedDps.class) {
+            hexagons[i][j].setUnit(new RangedDps(owner, army));
+            unitDeployMap.put(RangedDps.class, unitDeployMap.get(RangedDps.class)-1);
+        } else if (unitStartAmount.getKey() == MeleeDps.class) {
+            hexagons[i][j].setUnit(new MeleeDps(owner, army));
+            unitDeployMap.put(MeleeDps.class, unitDeployMap.get(MeleeDps.class)-1);
+        } else if (unitStartAmount.getKey() == BuilderDps.class) {
+            hexagons[i][j].setUnit(new BuilderDps(owner, army));
+            unitDeployMap.put(BuilderDps.class, unitDeployMap.get(BuilderDps.class) - 1);
+        }
     }
 
     public void initializeHexagons() {
@@ -59,24 +79,24 @@ public class Game {
         List<Integer> pawnPlaces = drawWithoutRepetition();
         int currentIteration = 0;
 
-
         for (int i = 0; i < x; i++) {
             for (int j = y; j < y + 2; j++) {
+
                 if (pawnPlaces.contains(currentIteration)) {
-                    int random = (int) (Math.random() * 100);
-                    if (random < 25) {
-                        hexagons[i][j].setUnit(new MeleeTank(owner, army));
-                    } else if (random < 50) {
-                        hexagons[i][j].setUnit(new RangedDps(owner, army));
-                    } else if (random < 80) {
-                        hexagons[i][j].setUnit(new MeleeDps(owner, army));
+                    Optional<Map.Entry<Class<? extends Unit>, Integer>> first = unitDeployMap.entrySet().stream().filter(entry -> entry.getValue() > 0).findFirst();
+
+                    if (first.isPresent()) {
+                        Map.Entry<Class<? extends Unit>, Integer> unitStartAmount = first.get();
+                        createUnitType(owner, army, i, j, unitStartAmount);
+
                     } else {
-                        hexagons[i][j].setUnit(new BuilderDps(owner, army));
+                        break;
                     }
                 }
                 currentIteration++;
             }
         }
+        this.setUnitDeployBalance();
 
         chestContent.add("diamond");
         chestContent.add("coal");
@@ -86,7 +106,6 @@ public class Game {
         for (int i = 0; i < 3; i++) {
             hexagons[i*4][chestPlacement].setUnit(new Chest(owner, chestContent.get(i)));
         }
-
     }
 
     public List<Integer> drawWithoutRepetition() {
