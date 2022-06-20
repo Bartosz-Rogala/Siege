@@ -2,21 +2,27 @@ package game.objects;
 
 import game.Player;
 import lombok.Getter;
+import lombok.Setter;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Unit extends GameObject {
-    @Getter private Player owner;
-    @Getter private String race;
-    @Getter private int minAttackDmg;
-    @Getter private int maxAttackDmg;
-    @Getter private int healthPoints;
-    @Getter private int moveRadius;
-    @Getter private int shootRadius;
+    @Setter @Getter private Player owner;
+    @Setter @Getter private String race;
+    @Setter @Getter private int minAttackDmg;
+    @Setter @Getter private int maxAttackDmg;
+    @Setter @Getter private int healthPoints;
+    @Setter @Getter private int moveRadius;
+    @Setter @Getter private int shootRadius;
 
     public Unit() {
         moveRadius = 1;
         shootRadius = 1;
         race = "human";
+    }
+
+    public Unit(Player owner, String race) {
+        this.owner = owner;
+        this.race = race;
     }
 
     public Unit(Player owner, String race, int minAttackDmg, int maxAttackDmg, int healthPoints, int moveRadius, int shootRadius) {

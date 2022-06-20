@@ -91,7 +91,7 @@ public class SessionHandler extends Thread {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Connection with player: " + player.toString() + " lost.");
 
         } finally {
             try {

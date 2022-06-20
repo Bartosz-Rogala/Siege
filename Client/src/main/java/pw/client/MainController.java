@@ -25,11 +25,6 @@ public class MainController extends Thread implements Initializable {
 
     @FXML public VBox vbox01;
     @FXML public TextField topTextField;
-
-    @FXML public Label statUnitName;
-    @FXML public Label statUnitRace;
-    @FXML public Label statUnitClass;
-    @FXML public Label statUnitType;
     @FXML public Label statHealthPoints;
     @FXML public Label statMoveRadius;
     @FXML public Label statAttackDamage;
