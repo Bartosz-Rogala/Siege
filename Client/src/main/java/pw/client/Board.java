@@ -1,5 +1,6 @@
 package pw.client;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 import java.io.IOException;
@@ -178,6 +179,7 @@ public class Board {
                 }
                 if (hexagons[i][j].getHex().getId().equals(hex.getId())) {
                     destination = hexagons[i][j];
+                    hex.setFill(Color.RED);
                 }
             }
         }
