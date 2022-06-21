@@ -1,5 +1,7 @@
 package pw.client;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ChoiceController {
@@ -64,16 +63,15 @@ public class ChoiceController {
         try {
             Stage stage = (Stage) chosenVBox.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainWindow.fxml"));
-            MainController mainController = new MainController(this, army);
+            MainController mainController = new MainController(this, army, stage);
             fxmlLoader.setController(mainController);
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));
+            stage.setFullScreen(true);
             stage.setTitle(startController.getUsername() + "");
-//            stage.setFullScreen(true);
             stage.setOnCloseRequest(event -> {
                 System.exit(0);
             });
-//            stage.setResizable(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

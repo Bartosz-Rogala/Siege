@@ -1,6 +1,8 @@
 package pw.client;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
@@ -35,6 +38,7 @@ public class MainController extends Thread implements Initializable {
     @FXML public TextField chatTextField;
     @FXML public TextArea chatTextArea;
 
+    @FXML public AnchorPane boardPane;
 
     BufferedReader reader;
     PrintWriter writer;
@@ -48,10 +52,13 @@ public class MainController extends Thread implements Initializable {
     int maxJ = 13;
     String currentPort;
 
+    Stage stage;
 
-    public MainController(ChoiceController choiceController, String army) {
+
+    public MainController(ChoiceController choiceController, String army, Stage stage) {
         this.choiceController = choiceController;
         this.army = army;
+        this.stage = stage;
     }
 
     @Override
@@ -80,6 +87,26 @@ public class MainController extends Thread implements Initializable {
         board = new Board(hexagons);
         send("first:" + army);
         this.start();
+
+
+        boardPane.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                Double yProportion = t1.doubleValue()/830.4;
+
+                board.yResizeAll(yProportion);
+            }
+        });
+
+        boardPane.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                Double xProportion = t1.doubleValue()/1352;
+
+                board.xResizeAll(xProportion);
+            }
+        });
+
     }
 
     @Override
@@ -104,6 +131,7 @@ public class MainController extends Thread implements Initializable {
                         continue;
                     }
                     chatTextArea.appendText( tokens[1] + ": " + fulmsg + "\n");
+
                 } else {
                     String[] hexes = tokens[1].split(";");
                     currentPort = tokens[0];
@@ -117,6 +145,7 @@ public class MainController extends Thread implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     public void hexOnClicked(MouseEvent event) {
         Polygon source = (Polygon) event.getSource();

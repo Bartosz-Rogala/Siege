@@ -65,6 +65,22 @@ public class Board {
         }
     }
 
+    public void yResizeAll(Double yProportion) {
+        for (int i = 0; i < hexagons.length; i++) {
+            for (int j = 0; j < hexagons[i].length; j++) {
+                hexagons[i][j].yResize(yProportion);
+            }
+        }
+    }
+
+    public void xResizeAll(Double xProportion) {
+        for (int i = 0; i < hexagons.length; i++) {
+            for (int j = 0; j < hexagons[i].length; j++) {
+                hexagons[i][j].xResize(xProportion);
+            }
+        }
+    }
+
     public void activate (String currentPort, Polygon hex) {
         for (int i = 0; i < hexagons.length; i++) {
             for (int j = 0; j < hexagons[i].length; j++) {
