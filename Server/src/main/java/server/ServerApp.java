@@ -6,7 +6,6 @@ import java.net.Socket;
 public class ServerApp {
     private Socket player1;
     private Socket player2;
-    private int sessionNumber; // do we need this?
 
     public ServerApp() {
     }

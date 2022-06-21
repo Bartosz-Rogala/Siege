@@ -3,8 +3,6 @@ package game;
 import game.objects.GameObject;
 import game.objects.Unit;
 
-import java.util.ArrayList;
-
 public class Hexagon {
 
 
@@ -19,26 +17,6 @@ public class Hexagon {
         this.i = i;
         this.j = j;
         isFilled = false;
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public int getJ() {
-        return j;
-    }
-
-    public boolean isFilled() {
-        return isFilled;
-    }
-
-    public void setFilled(boolean filled) {
-        this.isFilled = filled;
-    }
-
-    public GameObject getGameObject() {
-        return gameObject;
     }
 
     public Unit getUnit() {
