@@ -42,22 +42,18 @@ public class SessionHandler extends Thread {
 
     @Override
     public void run() {
-        Runnable r = () -> {
-            doRun(player1, reader1, writer1, writer2);
-        };
 
-        Runnable r2 = () -> {
-            doRun(player2, reader2, writer1, writer2);
-        };
+        Runnable r = () -> doRun(player1, reader1, writer1, writer2);
+
+        Runnable r2 = () -> doRun(player2, reader2, writer1, writer2);
 
         Thread t1 = new Thread(r);
         Thread t2 = new Thread(r2);
         t1.start();
         t2.start();
-
     }
 
-    public void doRun(Player player, BufferedReader bufferedReader, PrintWriter writer1, PrintWriter writer2) {
+    private void doRun(Player player, BufferedReader bufferedReader, PrintWriter writer1, PrintWriter writer2) {
         try {
             String message;
             while ((message = bufferedReader.readLine()) != null) {
@@ -90,7 +86,6 @@ public class SessionHandler extends Thread {
                 }
             }
 
-
         } catch (Exception e) {
             System.out.println("Connection with player: " + player.toString() + " lost.");
 
@@ -107,7 +102,7 @@ public class SessionHandler extends Thread {
         }
     }
 
-    public void splitTokens(String[] tokens) {
+    private void splitTokens(String[] tokens) {
         String[] actionTokens = tokens[1].split("/");
 
         switch(actionTokens[0]) {
