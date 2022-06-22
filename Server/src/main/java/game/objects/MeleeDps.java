@@ -2,6 +2,13 @@ package game.objects;
 
 import game.Player;
 
+/**
+ *
+ * MeleeDps is a class that represents heavy standard fighter in a game.
+ * Class extends Unit class
+ *
+ * @Author Łukasz Łaszek
+ */
 public class MeleeDps extends Unit {
 
     public MeleeDps(Player owner, String race) {

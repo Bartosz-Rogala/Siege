@@ -1,5 +1,12 @@
 import server.ServerApp;
 
+/**
+ *
+ * Main class of the application.
+ *
+ * @Author Łukasz Łaszek
+ */
+
 public class Main {
     public static void main(String[] args) {
         ServerApp server = new ServerApp();

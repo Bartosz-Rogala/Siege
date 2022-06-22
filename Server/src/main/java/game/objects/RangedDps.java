@@ -2,6 +2,13 @@ package game.objects;
 
 import game.Player;
 
+/**
+ *
+ * RangedDps is a class that represents distance fighter in a game.
+ * Class extends Unit class
+ *
+ * @Author Łukasz Łaszek
+ */
 public class RangedDps extends Unit {
 
     public RangedDps(Player owner, String race) {

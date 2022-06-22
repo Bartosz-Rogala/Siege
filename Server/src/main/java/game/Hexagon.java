@@ -1,15 +1,20 @@
 package game;
 
-import game.objects.GameObject;
 import game.objects.Unit;
 
+/**
+ *
+ * Hexagon is a class representing the smallest single field on a board. It is used to keep information about
+ * what is on that field or whether field is empty (available to be filled by game object).
+ *
+ * @Author Łukasz Łaszek
+ */
 public class Hexagon {
 
 
     private int i;
     private int j;
     private boolean isFilled;
-    private GameObject gameObject;
     private Unit unit;
 
 

@@ -3,6 +3,13 @@ package server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ *
+ * ServerApp is a class that handles connection between Client and Server.
+ *
+ * @Author Łukasz Łaszek
+ */
+
 public class ServerApp {
     private Socket player1;
     private Socket player2;

@@ -3,6 +3,13 @@ package game;
 import java.net.Socket;
 import java.util.Objects;
 
+/**
+ *
+ * Player is a class handling players of the game. Their socket and name.
+ *
+ * @Author Łukasz Łaszek
+ */
+
 public class Player {
     private Socket socket;
     private int playerId;

@@ -3,6 +3,13 @@ package game.objects;
 
 import game.Player;
 
+/**
+ *
+ * MeleeTank is a class that represents heavy armored fighter in a game.
+ * Class extends Unit class
+ *
+ * @Author Łukasz Łaszek
+ */
 public class MeleeTank extends Unit {
 
     public MeleeTank(Player owner, String race) {

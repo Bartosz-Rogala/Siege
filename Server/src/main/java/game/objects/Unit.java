@@ -5,7 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Unit extends GameObject {
+/**
+ *
+ * Unit is a class representing every object that appears in a game. Every other game object extends this class.
+ *
+ * @Author Łukasz Łaszek
+ */
+public class Unit {
     @Setter @Getter private Player owner;
     @Setter @Getter private String race;
     @Setter @Getter private int minAttackDmg;

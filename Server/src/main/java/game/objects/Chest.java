@@ -2,6 +2,14 @@ package game.objects;
 
 import game.Player;
 
+/**
+ *
+ * Chest is a class that represents a non-player object in a game. Chest can contain diamond or coal (nothing)
+ * Once player gets the diamond from opponents chest, he wins the game.
+ * Class extends Unit class
+ *
+ * @Author Łukasz Łaszek
+ */
 public class Chest extends Unit {
     private String name;
     private boolean isOpen;

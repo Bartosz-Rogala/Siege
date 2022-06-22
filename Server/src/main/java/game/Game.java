@@ -7,6 +7,13 @@ import static game.Properties.BOARD_HEIGHT;
 import static game.Properties.BOARD_WIDTH;
 import static game.Properties.MOVES_IN_A_ROUND;
 
+/**
+ *
+ * Game is a class representing the current state of Siege game. It is used to keep information about
+ * current round, available players units and at what stage the game is.
+ *
+ * @Author Łukasz Łaszek
+ */
 public class Game {
     Hexagon[][] hexagons;
     private Map<Class<? extends Unit>, Integer> unitDeployMap = new HashMap<>();
@@ -117,23 +124,8 @@ public class Game {
         return list.subList(0,9);
     }
 
-
-    public Hexagon[][] getHexagons() {
-        return hexagons;
-    }
-
-
-    public boolean isOver() {
-        return false;
-    }
-
     public Player getCurrentPlayer() {
         return this.currentPlayer;
-    }
-
-
-    public void updateGame(String currentPositions) {
-
     }
 
     public boolean attackAndContinue(String attacker, String victim) {
