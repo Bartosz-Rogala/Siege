@@ -24,6 +24,16 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * MainController is a class used to create and manage main game window,
+ * where the "battle" between clients begins and ends.
+ *
+ * This class cooperates with MainWindow.fxml file.
+ *
+ * @Author Bartosz Rogala
+ */
+
 public class MainController extends Thread implements Initializable {
 
     @FXML public VBox vbox01;

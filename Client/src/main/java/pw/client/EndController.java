@@ -11,6 +11,16 @@ import java.util.ResourceBundle;
 
 public class EndController implements Initializable {
 
+    /**
+     *
+     * EndController is a class used to inform clients about endgame result.
+     * Both players receive different information about game status (win/lose).
+     *
+     * This class cooperates with EndWindow.fxml file.
+     *
+     * @Author Bartosz Rogala
+     */
+
     String winner;
     String client;
 

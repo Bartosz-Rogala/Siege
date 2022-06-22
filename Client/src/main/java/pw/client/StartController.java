@@ -6,10 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
+/**
+ *
+ * StartController is a class used to create and manage the very first game window,
+ * where each one of clients (players) can type username and connect to the server as well.
+ *
+ * This class cooperates with StartingWindow.fxml file.
+ *
+ * @Author Bartosz Rogala
+ */
 
 public class StartController {
 

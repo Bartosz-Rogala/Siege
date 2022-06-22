@@ -5,6 +5,14 @@ import javafx.scene.shape.Polygon;
 
 import java.io.IOException;
 
+/**
+ *
+ * Board is a class used to create and resize game field.
+ * It also manage unit actions and read their statistics.
+ *
+ * @Author Bartosz Rogala
+ */
+
 public class Board {
 
     Hexagon[][] hexagons;

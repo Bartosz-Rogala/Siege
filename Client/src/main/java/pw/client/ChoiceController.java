@@ -1,7 +1,5 @@
 package pw.client;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +8,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.Socket;
+
+/**
+ *
+ * ChoiceController is a class used to create and manage the second game window,
+ * where each player can select an army of his choice.
+ *
+ * This class cooperates with ChoiceWindow.fxml file.
+ *
+ * @Author Łukasz Łaszek
+ */
 
 public class ChoiceController {
 

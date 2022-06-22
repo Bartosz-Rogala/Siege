@@ -8,6 +8,14 @@ import javafx.scene.shape.Polygon;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *
+ * Hexagon is a class used to fill and manage hexagonal battlefield of the game.
+ * It also provides unit statistics.
+ *
+ * @Author Bartosz Rogala
+ */
+
 public class Hexagon {
 
     private int i;
@@ -148,7 +156,6 @@ public class Hexagon {
         } else {
             this.hex.setTranslateX((xProportion - 1) * 107 * (j + 0.5));
         }
-
     }
 
     public void setIsActive(boolean active) {
@@ -229,22 +236,6 @@ public class Hexagon {
 
     public String getOwner() {
         return owner;
-    }
-
-    public String getUnitName() {
-        return unitName;
-    }
-
-    public String getUnitRace() {
-        return unitRace;
-    }
-
-    public String getUnitClass() {
-        return unitClass;
-    }
-
-    public String getUnitType() {
-        return unitType;
     }
 
     @Override
