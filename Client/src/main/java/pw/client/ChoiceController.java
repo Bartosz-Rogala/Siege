@@ -31,7 +31,7 @@ public class ChoiceController {
     @FXML
     public void initialize() {
         try {
-            socket = new Socket("localhost", 9001);
+            socket = new Socket("192.168.0.1", 9001);
             System.out.println("Socket is connected with server");
         } catch (IOException e) {
             e.printStackTrace();
