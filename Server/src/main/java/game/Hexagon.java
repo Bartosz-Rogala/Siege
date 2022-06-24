@@ -11,12 +11,10 @@ import game.objects.Unit;
  */
 public class Hexagon {
 
-
     private int i;
     private int j;
     private boolean isFilled;
     private Unit unit;
-
 
     public Hexagon(int i, int j) {
         this.i = i;
@@ -26,6 +24,10 @@ public class Hexagon {
 
     public Unit getUnit() {
         return unit;
+    }
+
+    public boolean isFilled() {
+        return isFilled;
     }
 
     public void setUnit(Unit unit) {

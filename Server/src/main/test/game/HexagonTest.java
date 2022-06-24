@@ -1,44 +1,40 @@
 package game;
 
+import com.jparams.verifier.tostring.ToStringVerifier;
 import game.objects.Unit;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HexagonTest {
-    Hexagon hexagon = Mockito.mock(Hexagon.class);
-    Unit unit = Mockito.mock(Unit.class);
+    Hexagon hexagon = new Hexagon(1,1);
+    Unit unit = new Unit();
+
 
     @Test
     public void shouldCreateHexagon() {
-        Assertions.assertNotNull(hexagon);
-    }
 
-    @Test
-    public void shouldSetUnit() {
-
-        hexagon.setUnit(unit);
-
-        Mockito.verify(hexagon, Mockito.times(1)).setUnit(unit);
+        assertNotNull(hexagon);
     }
 
     @Test
     public void shouldClear() {
 
-        hexagon.setUnit(unit);
         hexagon.clear();
 
-        Mockito.verify(hexagon, Mockito.times(1)).clear();
+        assertFalse(hexagon.isFilled());
     }
 
     @Test
     public void shouldMove() {
-        Hexagon hexagonFrom = Mockito.mock(Hexagon.class);
-        Hexagon hexagonTo = Mockito.mock(Hexagon.class);
+        Hexagon hexagonTo = new Hexagon(2,2);
 
-        hexagonFrom.setUnit(unit);
-        hexagonTo.move(hexagonFrom);
+        hexagon.setUnit(unit);
+        hexagonTo.move(hexagon);
+        hexagon.clear();
 
-        Mockito.verify(hexagonTo, Mockito.times(1)).move(hexagonFrom);
+        assertFalse(hexagon.isFilled());
+        assertTrue(hexagonTo.isFilled());
     }
+
 }
