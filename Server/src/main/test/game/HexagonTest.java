@@ -1,6 +1,5 @@
 package game;
 
-import com.jparams.verifier.tostring.ToStringVerifier;
 import game.objects.Unit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,14 +16,11 @@ public class HexagonTest {
 
     @Test
     public void shouldCreateHexagon() {
-
-
         assertNotNull(hexagon);
     }
 
     @Test
     public void shouldClear() {
-
         hexagon.clear();
 
         assertFalse(hexagon.isFilled());

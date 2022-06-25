@@ -45,7 +45,6 @@ public class Hexagon {
         this.unit = from.getUnit();
     }
 
-
     @Override
     public String toString() {
         return isFilled + "," + unit;
