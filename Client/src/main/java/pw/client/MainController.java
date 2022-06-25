@@ -137,7 +137,7 @@ public class MainController extends Thread implements Initializable {
                     System.out.println(cmd);
                     StringBuilder fulmsg = new StringBuilder();
                     for(int i = 1; i < msgTokens.length; i++) {
-                        fulmsg.append(msgTokens[i]);
+                        fulmsg.append(msgTokens[i] + " ");
                     }
                     if (cmd.equalsIgnoreCase(StartController.username + ":")) {
                         continue;
