@@ -101,7 +101,7 @@ public class MainController extends Thread implements Initializable {
         boardPane.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                Double yProportion = t1.doubleValue()/830.4;
+                Double yProportion = t1.doubleValue()/870;
 
                 board.yResizeAll(yProportion);
             }
@@ -110,7 +110,7 @@ public class MainController extends Thread implements Initializable {
         boardPane.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                Double xProportion = t1.doubleValue()/1352;
+                Double xProportion = t1.doubleValue()/1393;
 
                 board.xResizeAll(xProportion);
             }
