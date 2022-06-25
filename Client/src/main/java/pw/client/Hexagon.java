@@ -146,7 +146,7 @@ public class Hexagon {
 
     public void yResize(Double yProportion) {
         this.hex.setScaleY(yProportion);
-//        this.hex.setTranslateY((yProportion - 1) * i);
+        this.hex.setTranslateY((yProportion - 1) * 3.5 * i);
     }
 
     public void xResize(Double xProportion) {
