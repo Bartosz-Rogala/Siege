@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"pw.client","l":"App"},{"p":"pw.client","l":"Board"},{"p":"pw.client","l":"ChoiceController"},{"p":"pw.client","l":"EndController"},{"p":"pw.client","l":"Hexagon"},{"p":"pw.client","l":"MainController"},{"p":"pw.client","l":"StartController"}];updateSearchResults();
