@@ -63,12 +63,17 @@ public class MainController extends Thread implements Initializable {
     String currentPort;
 
     Stage stage;
+    HBox hbox;
+    Polygon hex;
 
 
     public MainController(ChoiceController choiceController, String army, Stage stage) {
         this.choiceController = choiceController;
         this.army = army;
         this.stage = stage;
+
+        hexagons = new Hexagon[maxI][maxJ];
+
     }
 
     @Override
@@ -84,12 +89,11 @@ public class MainController extends Thread implements Initializable {
         }
 
 
-        hexagons = new Hexagon[maxI][maxJ];
 
         for(int i = 0; i < vbox01.getChildren().toArray().length; i++) {
-            HBox hbox = (HBox) vbox01.getChildren().toArray()[i];
+            hbox = (HBox) vbox01.getChildren().toArray()[i];
             for (int j = 0; j < hbox.getChildren().toArray().length; j++) {
-                Polygon hex = (Polygon) hbox.getChildren().toArray()[j];
+                hex = (Polygon) hbox.getChildren().toArray()[j];
                 hexagons[i][j] = new Hexagon(hex, i, j);
             }
         }
@@ -124,6 +128,7 @@ public class MainController extends Thread implements Initializable {
     @Override
     public void run() {
         try {
+            Thread.sleep(300);
             while (true) {
                 String msg = reader.readLine();
                 System.out.println("reader: " + msg);
@@ -192,7 +197,6 @@ public class MainController extends Thread implements Initializable {
                 board.activate(currentPort, source);
             }
         }
-
     }
 
     public void sendChatMessage() {
@@ -240,10 +244,7 @@ public class MainController extends Thread implements Initializable {
 
 
     public void send(String msg) {
-
         writer.println(msg);
-        System.out.println(msg);
-
     }
 
     private void endgame(String winner) {
