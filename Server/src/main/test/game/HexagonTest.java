@@ -2,17 +2,22 @@ package game;
 
 import com.jparams.verifier.tostring.ToStringVerifier;
 import game.objects.Unit;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HexagonTest {
-    Hexagon hexagon = new Hexagon(1,1);
-    Unit unit = new Unit();
+    Hexagon hexagon;
 
+    @BeforeEach
+    public void setup() {
+        hexagon = new Hexagon(1,1);
+    }
 
     @Test
     public void shouldCreateHexagon() {
+
 
         assertNotNull(hexagon);
     }
@@ -27,6 +32,7 @@ public class HexagonTest {
 
     @Test
     public void shouldMove() {
+        Unit unit = new Unit();
         Hexagon hexagonTo = new Hexagon(2,2);
 
         hexagon.setUnit(unit);
