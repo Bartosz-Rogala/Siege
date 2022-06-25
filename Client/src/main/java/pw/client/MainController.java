@@ -95,8 +95,7 @@ public class MainController extends Thread implements Initializable {
         }
 
         board = new Board(hexagons);
-        send("first:" + army);
-        this.start();
+
 
 
         boardPane.heightProperty().addListener(new ChangeListener<Number>() {
@@ -116,6 +115,9 @@ public class MainController extends Thread implements Initializable {
                 board.xResizeAll(xProportion);
             }
         });
+
+        send("first:" + army);
+        this.start();
 
     }
 
