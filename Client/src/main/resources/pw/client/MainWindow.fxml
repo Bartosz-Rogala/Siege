@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" styleClass="mainWindow" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane fx:id="boardPane" minHeight="400.0" minWidth="400.0" styleClass="board" BorderPane.alignment="CENTER">
          <children>
 
-                        <VBox fx:id="vbox01" alignment="CENTER" minHeight="0.0" minWidth="0.0" spacing="-31.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox fx:id="vbox01" alignment="CENTER" minHeight="0.0" minWidth="0.0" spacing="-31.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <HBox fx:id="hbox01" minHeight="0.0" minWidth="0.0" AnchorPane.leftAnchor="50.0" VBox.vgrow="ALWAYS">
                   <children>
                      <Polygon fx:id="hex0101" fill="TRANSPARENT" onMouseClicked="#hexOnClicked" onMouseEntered="#moreInfo" smooth="false" strokeWidth="2.0">
