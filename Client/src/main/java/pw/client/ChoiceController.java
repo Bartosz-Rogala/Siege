@@ -18,7 +18,7 @@ import java.net.Socket;
  *
  * This class cooperates with ChoiceWindow.fxml file.
  *
- * @Author Łukasz Łaszek
+ * @Author Lukasz Laszek
  */
 
 public class ChoiceController {
